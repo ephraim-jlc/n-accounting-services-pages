@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Cloud Accounting Services in Northampton | N-Accounting</title>
+<style>
+  :root {
+    --ink: #1f1f1f;
+    --grey-1: #555;
+    --grey-2: #888;
+    --line: #cfcfcf;
+    --line-strong: #9a9a9a;
+    --fill-soft: #f3f3f3;
+    --fill-mid: #e7e7e7;
+    --placeholder: #efefef;
+    --page: #ffffff;
+    --mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #d9d9d9;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .canvas {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--page);
+    border-left: 1px solid var(--line-strong);
+    border-right: 1px solid var(--line-strong);
+  }
+
+  .meta-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .meta-bar span { color: #bdbdbd; }
+  .meta-bar strong { color: #fff; font-weight: 600; }
+
+  section.block {
+    position: relative;
+    padding: 40px 48px;
+    border-bottom: 1px dashed var(--line);
+  }
+  section.block.shaded { background: var(--fill-soft); }
+
+  .anno {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    border: 1px solid var(--line);
+    padding: 2px 7px;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  .h1 { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0 0 14px; }
+  .h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+  .h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    margin: 0 0 16px;
+  }
+  p.body { font-size: 13.5px; color: var(--grey-1); margin: 0 0 12px; max-width: 62ch; }
+  .small { font-size: 12px; color: var(--grey-2); }
+
+  .img-ph {
+    background: var(--placeholder);
+    border: 1px solid var(--line-strong);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .img-ph::before, .img-ph::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      linear-gradient(to top right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph::after {
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph .lbl {
+    position: relative;
+    z-index: 1;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    background: var(--placeholder);
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+  }
+
+  .btn {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 11px 18px;
+    border: 1.5px solid var(--ink);
+    margin: 4px 8px 4px 0;
+  }
+  .btn.primary { background: var(--ink); color: #fff; }
+  .btn.secondary { background: #fff; color: var(--ink); }
+
+  .trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    margin-top: 22px;
+  }
+  .trust div {
+    flex: 1 1 0;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--grey-1);
+    border-right: 1px solid var(--line);
+    min-width: 140px;
+  }
+  .trust div:last-child { border-right: none; }
+
+  .grid { display: grid; gap: 18px; }
+  .two { grid-template-columns: 1fr 1fr; }
+  .three { grid-template-columns: repeat(3, 1fr); }
+  .hero-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+
+  .card {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 18px;
+  }
+  .card .ico {
+    width: 30px; height: 30px;
+    border: 1px solid var(--line-strong);
+    background: var(--fill-mid);
+    margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; color: var(--grey-2);
+  }
+  .card p { font-size: 12.5px; color: var(--grey-1); margin: 0; }
+
+  .support {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 20px;
+  }
+  .support .h3 { margin-bottom: 12px; }
+  ul.checks { list-style: none; margin: 0; padding: 0; }
+  ul.checks li {
+    font-size: 12.5px;
+    color: var(--grey-1);
+    padding: 7px 0 7px 26px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ul.checks li:last-child { border-bottom: none; }
+  ul.checks li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 16px; height: 16px;
+    border: 1px solid var(--line-strong);
+    text-align: center;
+    line-height: 15px;
+    font-size: 10px;
+    color: var(--grey-1);
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .step { border: 1px solid var(--line-strong); padding: 14px; background: #fff; }
+  .step .num {
+    width: 26px; height: 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .step h4 { font-size: 12.5px; margin: 0 0 6px; }
+  .step p { font-size: 11.5px; color: var(--grey-1); margin: 0; }
+
+  .aud { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
+  .aud div {
+    font-size: 12.5px; color: var(--grey-1);
+    padding: 8px 0 8px 24px; position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  .aud div::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 12px; height: 12px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+  }
+
+  .cta-band { background: var(--fill-mid); border: 1px solid var(--line-strong); text-align: center; padding: 36px; }
+  .cta-band .h2 { margin-bottom: 10px; }
+  .cta-band p.body { margin: 0 auto 18px; }
+  .contact-line { font-family: var(--mono); font-size: 12px; color: var(--grey-1); margin-top: 14px; }
+
+  .faq-item { border: 1px solid var(--line-strong); margin-bottom: -1px; }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; font-size: 13.5px; font-weight: 600; background: #fff;
+  }
+  .faq-q .pm { font-family: var(--mono); color: var(--grey-2); }
+  .faq-a { padding: 0 16px 14px; font-size: 12.5px; color: var(--grey-1); max-width: 70ch; }
+  .faq-item.closed .faq-a { display: none; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split .left { padding-right: 32px; }
+
+  /* software chips */
+  .software-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .software-row .chip {
+    border: 1px solid var(--line-strong); background: #fff; padding: 8px 14px;
+    font-size: 12px; font-weight: 600; color: var(--grey-1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .software-row .chip .dot { width: 16px; height: 16px; border: 1px solid var(--line-strong); background: var(--fill-mid); }
+
+  /* dashboard mock */
+  .dash { border: 1px solid var(--line-strong); background: #fff; padding: 16px; }
+  .dash-head { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--grey-2); margin-bottom: 12px; }
+  .dash-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .dash-kpi { border: 1px solid var(--line); background: var(--fill-soft); padding: 10px; }
+  .dash-kpi .v { height: 14px; width: 60%; background: var(--fill-mid); margin-bottom: 6px; }
+  .dash-kpi .l { height: 8px; width: 80%; background: var(--line); }
+  .dash-bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; border-bottom: 1px solid var(--line); }
+  .dash-bars span { flex: 1; background: var(--fill-mid); border: 1px solid var(--line); }
+
+  /* before/after migration visual */
+  .ba { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin-top: 6px; }
+  .ba .box { border: 1px solid var(--line-strong); background: #fff; padding: 18px; text-align: center; }
+  .ba .box.before { background: var(--fill-soft); }
+  .ba .box .ico { width: 38px; height: 38px; border: 1px solid var(--line-strong); background: var(--fill-mid); margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10px; color: var(--grey-2); }
+  .ba .box .t { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+  .ba .box .s { font-size: 11px; color: var(--grey-2); margin-top: 4px; }
+  .ba .arrow { font-size: 22px; color: var(--grey-2); font-family: var(--mono); }
+
+  .wf-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px; border-bottom: 1px solid var(--line-strong);
+  }
+  .wf-logo { width: 130px; height: 30px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+    display:flex; align-items:center; justify-content:center; font-family: var(--mono); font-size: 10px; color: var(--grey-2); }
+  .wf-nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; font-size: 12px; color: var(--grey-1); }
+  .wf-nav .navcta { border: 1.5px solid var(--ink); padding: 8px 14px; font-size: 12px; font-weight: 600; }
+
+  .wf-foot { background: var(--ink); color: #cfcfcf; padding: 32px 48px; font-size: 12px; }
+  .wf-foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 24px; }
+  .wf-foot h5 { color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px; }
+  .wf-foot ul { list-style: none; margin: 0; padding: 0; line-height: 1.9; }
+
+  @media (max-width: 820px) {
+    .hero-grid, .two, .three, .split { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .aud { grid-template-columns: 1fr; }
+    .ba { grid-template-columns: 1fr; }
+    .ba .arrow { transform: rotate(90deg); margin: 0 auto; }
+    .wf-nav ul { display: none; }
+    .wf-foot .cols { grid-template-columns: 1fr 1fr; }
+    section.block { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- META / PAGE INFO -->
+  <div class="meta-bar">
+    <strong>WIREFRAME</strong> &nbsp;·&nbsp; N-Accounting service page<br>
+    <span>URL:</span> /services/cloud-accounting/ &nbsp; <span>|</span> &nbsp;
+    <span>Title:</span> Cloud Accounting Northampton | N-Accounting<br>
+    <span>Meta:</span> Cloud accounting services in Northampton using Xero and QuickBooks. Real-time reporting, Making Tax Digital compliance and digital finance solutions.
+  </div>
+
+  <!-- NAV -->
+  <div class="wf-nav">
+    <div class="wf-logo">LOGO</div>
+    <ul>
+      <li>Home</li><li>About Us ▾</li><li>Case Studies</li><li>Articles</li><li>Client Area ▾</li><li>Free Stuff</li><li>Contact</li>
+    </ul>
+    <div class="navcta">Contact us</div>
+  </div>
+
+  <!-- 1. HERO -->
+  <section class="block">
+    <span class="anno">Hero · 2-col + trust strip</span>
+    <div class="grid hero-grid">
+      <div>
+        <p class="eyebrow">H1</p>
+        <h1 class="h1">Cloud Accounting Services for Modern Businesses</h1>
+        <p class="body">At N-Accounting, we provide cloud accounting services in Northampton for small businesses, SMEs, start-ups and growing companies that want a simpler, smarter way to manage their finances.</p>
+        <p class="body">Move away from spreadsheets, paper records and manual processes. With Xero and QuickBooks you can access financial information more easily, automate routine tasks and keep records up to date all year. We help with setup, migration, MTD compliance and ongoing support.</p>
+        <div>
+          <span class="btn primary">Book a Free Consultation</span>
+          <span class="btn secondary">Ask About Cloud Accounting Setup</span>
+        </div>
+      </div>
+      <div class="img-ph" style="min-height:240px;">
+        <span class="lbl">Image — cloud dashboard / Xero-style reporting / mobile access</span>
+      </div>
+    </div>
+    <div class="trust">
+      <div>Xero &amp; QuickBooks support</div>
+      <div>Making Tax Digital ready</div>
+      <div>Real-time reporting</div>
+      <div>Northampton cloud accountants</div>
+    </div>
+  </section>
+
+  <!-- 2. INTRO -->
+  <section class="block">
+    <span class="anno">Intro · full-width text</span>
+    <h2 class="h2">Modern Cloud Accounting Solutions for Northampton Businesses</h2>
+    <p class="body">Traditional accounting systems can make it difficult to keep financial information up to date. Spreadsheets, paper receipts and manual processes often create extra admin, increase the risk of errors and make it harder to understand your business position in real time.</p>
+    <p class="body">Cloud accounting gives business owners a more efficient way to manage financial records, reporting and day-to-day accounting tasks. By using online software, your records can be easier to access, update and share with your accountant.</p>
+    <p class="body">N-Accounting helps businesses in Northampton move to modern cloud systems that improve accuracy, visibility and efficiency — whether you're switching from manual records or improving an existing digital setup.</p>
+  </section>
+
+  <!-- 3. EXPLAINER -->
+  <section class="block shaded">
+    <span class="anno">Explainer · 2-col + support card</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">What Is Cloud Accounting and How Does It Work?</h2>
+        <p class="body">Cloud accounting is the use of online accounting software to manage your business finances. Instead of records on a desktop, spreadsheet or paper system, your information is stored securely online and accessed when needed.</p>
+        <p class="body">Cloud software connects with bank feeds, invoices, receipts and reporting tools — reducing manual data entry and giving a more up-to-date view of your financial position.</p>
+        <p class="body">It also makes collaboration easier: your accountant works with the same information, helping resolve issues, prepare reports and keep records organised without passing files back and forth. Platforms such as Xero and QuickBooks are commonly used.</p>
+      </div>
+      <div class="support">
+        <p class="h3">Cloud Accounting Helps With</p>
+        <ul class="checks">
+          <li>Online financial record keeping</li>
+          <li>Real-time access to financial data</li>
+          <li>Bank feed integration</li>
+          <li>Automated transaction matching</li>
+          <li>Digital invoice and receipt management</li>
+          <li>Remote collaboration with your accountant</li>
+          <li>Making Tax Digital preparation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BENEFITS -->
+  <section class="block">
+    <span class="anno">Benefits · card grid (6)</span>
+    <h2 class="h2">Benefits of Cloud Accounting for Small Businesses</h2>
+    <p class="body" style="margin-bottom:22px;">Cloud accounting can make financial management easier, faster and more useful throughout the year — a more current view of income, costs, cash flow and performance rather than waiting until period end.</p>
+    <div class="grid three">
+      <div class="card"><div class="ico">ICON</div><p class="h3">Real-Time Financial Visibility</p><p>Access more up-to-date information so you understand your position clearly.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Reduced Manual Data Entry</p><p>Bank feeds and automation cut the time spent entering information by hand.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Improved Accuracy &amp; Efficiency</p><p>Records stay more consistent and easier to check, reducing errors.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Access From Anywhere</p><p>Review your accounting information remotely, on the move.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Better Decision-Making</p><p>Current data supports faster, better-informed decisions on spend, growth and cash flow.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Easier Collaboration</p><p>Your accountant accesses relevant information easily, improving support.</p></div>
+    </div>
+  </section>
+
+  <!-- 5. XERO & SOFTWARE INTEGRATION -->
+  <section class="block shaded">
+    <span class="anno">Software integration · distinct + software chips + checklist</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">Xero Accounting Services and Software Integration</h2>
+        <p class="body">Choosing and setting up the right software makes a major difference to how effectively your business manages its finances.</p>
+        <p class="body">N-Accounting provides Xero accounting services in Northampton, plus support for other platforms such as QuickBooks. We help set up your system, connect bank feeds, organise categories, review workflows and make sure the software is being used properly.</p>
+        <p class="body">A well-configured system supports bookkeeping, reporting, invoicing, reconciliation and tax prep — with dashboards that make your financial information easier to understand.</p>
+        <div class="software-row">
+          <div class="chip"><span class="dot"></span> Xero</div>
+          <div class="chip"><span class="dot"></span> QuickBooks</div>
+          <div class="chip"><span class="dot"></span> Bank feeds</div>
+        </div>
+      </div>
+      <div class="support">
+        <p class="h3">Software Support May Include</p>
+        <ul class="checks">
+          <li>Xero setup and configuration</li>
+          <li>QuickBooks support</li>
+          <li>Bank feed integration</li>
+          <li>Automated reconciliation support</li>
+          <li>Chart of accounts setup</li>
+          <li>Invoice and receipt workflows</li>
+          <li>Reporting dashboard setup</li>
+          <li>Ongoing software guidance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. MAKING TAX DIGITAL -->
+  <section class="block">
+    <span class="anno">Making Tax Digital · compliance + side panel</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">Making Tax Digital Compliance</h2>
+        <p class="body">Making Tax Digital has made digital record keeping increasingly important for UK businesses. Businesses need systems that support accurate digital records and relevant HMRC reporting requirements.</p>
+        <p class="body">Cloud accounting software helps businesses stay more organised by keeping records in a digital format and reducing reliance on spreadsheets or paper-based systems.</p>
+        <p class="body">N-Accounting can help you understand how cloud accounting fits with Making Tax Digital, review your current setup and support a smoother move towards digital compliance.</p>
+      </div>
+      <div class="support">
+        <p class="h3">MTD-Ready Accounting Can Help With</p>
+        <ul class="checks">
+          <li>Digital financial record keeping</li>
+          <li>VAT and tax reporting preparation</li>
+          <li>More structured bookkeeping processes</li>
+          <li>Reduced filing errors</li>
+          <li>Better access to supporting records</li>
+          <li>Improved HMRC compliance readiness</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SETUP & MIGRATION -->
+  <section class="block shaded">
+    <span class="anno">Setup & migration · before/after visual + checklist</span>
+    <h2 class="h2">Cloud Accounting Setup and Migration Services</h2>
+    <p class="body">Moving to cloud accounting can feel daunting, especially if your business uses spreadsheets, desktop software or paper records. N-Accounting guides you through setup and migration so the transition feels clear and manageable.</p>
+    <div class="ba">
+      <div class="box before"><div class="ico">ICON</div><div class="t">Manual records</div><div class="s">Spreadsheets · paper · desktop software</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="box"><div class="ico">ICON</div><div class="t">Cloud accounting system</div><div class="s">Xero / QuickBooks · bank feeds · dashboards</div></div>
+    </div>
+    <div class="grid two" style="margin-top:22px;">
+      <p class="body" style="margin:0;">We review your existing records, choose the right system, migrate relevant data, configure your software and explain how it should be used day to day. The goal isn't just to move records online — it's to create a better financial system that saves time, improves visibility and supports your wider accounting needs.</p>
+      <div class="support" style="border:1px solid var(--line-strong);">
+        <p class="h3">Cloud Migration Support May Include</p>
+        <ul class="checks">
+          <li>Review of your current accounting setup</li>
+          <li>Moving from spreadsheets or manual records</li>
+          <li>Data migration to Xero or QuickBooks</li>
+          <li>Bank feed connection</li>
+          <li>Invoice and receipt process setup</li>
+          <li>Software training and guidance</li>
+          <li>Ongoing support after migration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ADVISORY & REPORTING -->
+  <section class="block">
+    <span class="anno">Advisory & reporting · dashboard visual + checklist</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">Real-Time Reporting and Better Financial Control</h2>
+        <p class="body">Cloud accounting is most valuable when it gives you better financial insight. With the right setup, your software supports clearer reporting, better cash flow visibility and more informed decisions.</p>
+        <p class="body">N-Accounting helps you use your cloud data to understand what's happening in your business — reviewing income and expenses, checking cash flow, preparing management reports or spotting trends in performance.</p>
+        <p class="body">Instead of accounting being something that only happens at year end, cloud accounting helps you keep a closer eye on your business throughout the year.</p>
+        <div class="support" style="margin-top:6px;">
+          <p class="h3">Real-Time Reporting Can Support</p>
+          <ul class="checks">
+            <li>Cash flow monitoring</li>
+            <li>Profit and loss visibility</li>
+            <li>Expense tracking</li>
+            <li>Budgeting and forecasting</li>
+            <li>Management accounts</li>
+            <li>Tax planning</li>
+            <li>Business performance reviews</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="dash">
+          <div class="dash-head">Reporting dashboard — mock</div>
+          <div class="dash-row">
+            <div class="dash-kpi"><div class="v"></div><div class="l"></div></div>
+            <div class="dash-kpi"><div class="v"></div><div class="l"></div></div>
+            <div class="dash-kpi"><div class="v"></div><div class="l"></div></div>
+          </div>
+          <div class="dash-bars">
+            <span style="height:45%"></span><span style="height:70%"></span><span style="height:55%"></span>
+            <span style="height:85%"></span><span style="height:65%"></span><span style="height:95%"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. AUDIENCE -->
+  <section class="block shaded">
+    <span class="anno">Audience · checklist grid</span>
+    <h2 class="h2">Who Cloud Accounting Services Are For</h2>
+    <p class="body" style="margin-bottom:18px;">Suitable for businesses that want more efficient systems, better visibility and less reliance on manual admin:</p>
+    <div class="aud">
+      <div>Small businesses</div><div>SMEs</div>
+      <div>Start-ups</div><div>Growing companies</div>
+      <div>Sole traders</div><div>Limited companies</div>
+      <div>Contractors and freelancers</div><div>Businesses using spreadsheets</div>
+      <div>Businesses switching from manual systems</div><div>Businesses wanting Xero or QuickBooks support</div>
+      <div>Businesses preparing for Making Tax Digital</div><div>&nbsp;</div>
+    </div>
+  </section>
+
+  <!-- 10. PROCESS -->
+  <section class="block">
+    <span class="anno">Process · horizontal steps (vertical on mobile)</span>
+    <h2 class="h2">How Our Cloud Accounting Process Works</h2>
+    <div class="steps" style="margin-top:18px;">
+      <div class="step"><div class="num">1</div><h4>Review Current System</h4><p>We understand how you currently manage accounts, bookkeeping and records.</p></div>
+      <div class="step"><div class="num">2</div><h4>Recommend &amp; Set Up</h4><p>We identify the right approach and set up the system around your needs.</p></div>
+      <div class="step"><div class="num">3</div><h4>Migrate &amp; Integrate</h4><p>We move you from spreadsheets, manual records or existing software.</p></div>
+      <div class="step"><div class="num">4</div><h4>Training &amp; Workflows</h4><p>We help you use the system and keep processes organised.</p></div>
+      <div class="step"><div class="num">5</div><h4>Ongoing Support</h4><p>Guidance, bookkeeping and reporting to get the most from your cloud system.</p></div>
+    </div>
+  </section>
+
+  <!-- 11. WHY CHOOSE -->
+  <section class="block shaded">
+    <span class="anno">Why choose · intro + 5 benefit cards</span>
+    <div class="grid hero-grid" style="margin-bottom:22px;">
+      <div>
+        <h2 class="h2">Why Choose N-Accounting for Cloud Accounting in Northampton?</h2>
+        <p class="body">Cloud accounting works best when the software is set up properly and connected to your wider accounting needs. We help small businesses use digital tools in a practical way, without adding unnecessary complexity.</p>
+        <p class="body">We combine accounting knowledge with cloud software support, helping you move towards a more organised, efficient financial system.</p>
+      </div>
+      <div class="img-ph" style="min-height:180px;"><span class="lbl">Image — team / cloud dashboard</span></div>
+    </div>
+    <div class="grid" style="grid-template-columns: repeat(5,1fr);">
+      <div class="card"><p class="h3">Xero &amp; Cloud Software Expertise</p><p>Setup, migration and ongoing software use.</p></div>
+      <div class="card"><p class="h3">SME-Focused Support</p><p>Built for small businesses, start-ups and growing companies.</p></div>
+      <div class="card"><p class="h3">Making Tax Digital Knowledge</p><p>How digital accounting supports HMRC compliance.</p></div>
+      <div class="card"><p class="h3">Smooth Migration Process</p><p>Guided transition from manual records or older systems.</p></div>
+      <div class="card"><p class="h3">Ongoing Advisory Support</p><p>Use cloud data for reporting, decisions and planning.</p></div>
+    </div>
+  </section>
+
+  <!-- 12. CONVERSION -->
+  <section class="block">
+    <span class="anno">Conversion · full-width CTA band</span>
+    <div class="cta-band">
+      <h2 class="h2">Get Expert Cloud Accounting Services in Northampton</h2>
+      <p class="body">If you want to move to cloud accounting, improve your existing setup or get more value from Xero or QuickBooks, N-Accounting can help. Book a free consultation to discuss your current system, your goals and the best way towards simpler, more efficient digital finance management.</p>
+      <span class="btn primary">Book a Free Consultation</span>
+      <div class="contact-line">Ask about Xero setup, QuickBooks guidance, cloud migration and Making Tax Digital readiness</div>
+    </div>
+  </section>
+
+  <!-- 13. RELATED SERVICES -->
+  <section class="block">
+    <span class="anno">Related services · 4 link cards</span>
+    <h2 class="h2">Related Accounting and Business Services</h2>
+    <div class="grid" style="grid-template-columns: repeat(4,1fr); margin-top:16px;">
+      <div class="card"><p class="h3">Bookkeeping</p><p>Monthly bookkeeping to keep records organised and ready for reporting.</p></div>
+      <div class="card"><p class="h3">Management Accounts</p><p>Regular reporting, cash flow insights and performance tracking.</p></div>
+      <div class="card"><p class="h3">Accounting Services</p><p>Professional accounting for SMEs, sole traders and limited companies.</p></div>
+      <div class="card"><p class="h3">Tax Services</p><p>Tax planning, HMRC compliance and return preparation.</p></div>
+    </div>
+  </section>
+
+  <!-- 14. FAQ -->
+  <section class="block shaded">
+    <span class="anno">FAQ · accordion + FAQ schema</span>
+    <h2 class="h2">Frequently Asked Questions</h2>
+    <div style="margin-top:16px;">
+      <div class="faq-item">
+        <div class="faq-q">What is cloud accounting? <span class="pm">–</span></div>
+        <div class="faq-a">The use of online accounting software to manage financial records, bookkeeping, invoicing and reporting — letting business owners and accountants access information through a secure online platform.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Is Xero better than QuickBooks? <span class="pm">+</span></div>
+        <div class="faq-a">Both are popular cloud platforms. The best choice depends on your business, how you manage invoices and expenses, what reporting you need and how you prefer to work. An accountant can help you choose.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">What is Making Tax Digital? <span class="pm">+</span></div>
+        <div class="faq-a">An HMRC initiative requiring many businesses to keep digital records and use compatible software for certain tax reporting. Cloud accounting software helps maintain digital records more efficiently.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Do I need cloud accounting for my business? <span class="pm">+</span></div>
+        <div class="faq-a">It's useful if you want better access to information, less manual admin, easier collaboration with your accountant and more organised digital records — especially for growing businesses and those preparing for MTD.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">How does cloud accounting help SMEs? <span class="pm">+</span></div>
+        <div class="faq-a">By improving visibility, reducing manual data entry, supporting faster reporting and making records easier to manage all year — helping owners make better decisions and stay organised.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. FOOTER CTA STRIP -->
+  <section class="block">
+    <span class="anno">Footer CTA strip</span>
+    <div style="text-align:center;">
+      <h2 class="h2">Ready to Move to Cloud Accounting?</h2>
+      <p class="body" style="margin:0 auto 16px;">Speak to N-Accounting about cloud accounting services in Northampton, including Xero setup, QuickBooks support and digital finance systems for small businesses.</p>
+      <span class="btn primary">Book a Free Consultation</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="wf-foot">
+    <div class="cols">
+      <div>
+        <div class="wf-logo" style="margin-bottom:12px;">LOGO</div>
+        <p style="margin:0;">Social: FB · X · YouTube · LinkedIn · IG</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li>Accounting Services</li>
+          <li>Tax Services</li>
+          <li>Annual Accounts</li>
+          <li>Bookkeeping</li>
+          <li>Payroll</li>
+          <li>VAT</li>
+          <li>Cloud Accounting</li>
+          <li>Management Accounts</li>
+        </ul>
+      </div>
+      <div>
+        <h5>About Us</h5>
+        <ul>
+          <li>Articles</li>
+          <li>Contact Us</li>
+          <li>Meet the team</li>
+          <li>Our Vision</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>info@n-accounting.co.uk</li>
+          <li>01604 330129</li>
+          <li>Privacy Policy</li>
+          <li>Terms &amp; Conditions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>

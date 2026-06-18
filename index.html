@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N-Accounting Service Page Wireframes Index | JL Creative</title>
+<style>
+  :root {
+    --navy: #00205C;
+    --rust: #C04D00;
+    --rust-soft: #E9794A;
+    --ink: #00205C;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --surface: #F7F7F5;
+    --white: #FFFFFF;
+    --sans: "Calibri", "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    --mono: "Consolas", "SFMono-Regular", "Menlo", monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--navy);
+    background: #e6e8ec;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .canvas {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: 0 0 0 1px var(--line);
+  }
+
+  .brand-band {
+    background: var(--navy);
+    padding: 26px 48px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .brand-band img { height: 100px; width: auto; display: block; }
+  .brand-band .bt { color: #fff; }
+  .brand-band .bt .ey {
+    font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust-soft);
+    margin: 0 0 4px;
+  }
+  .brand-band .bt h1 { font-size: 22px; font-weight: 700; margin: 0; color: #fff; letter-spacing: -0.01em; }
+  .brand-band .bt p { margin: 3px 0 0; font-size: 12.5px; color: #c7cbd6; }
+
+  .meta-strip {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 48px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .meta-strip strong { color: var(--navy); }
+
+  section.block { padding: 40px 48px; border-bottom: 1px solid var(--line); }
+  section.block.shaded { background: var(--surface); }
+
+  .eyebrow {
+    font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--rust); margin: 0 0 12px;
+  }
+  .h1 { font-size: 27px; font-weight: 700; margin: 0 0 12px; color: var(--navy); letter-spacing: -0.01em; }
+  .h2 { font-size: 20px; font-weight: 700; margin: 0 0 14px; color: var(--navy); }
+  p.body { font-size: 14px; color: #374151; margin: 0 0 12px; max-width: 72ch; }
+
+  .pages { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pcard {
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--navy);
+    background: var(--white);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,32,92,0.06);
+  }
+  .pcard .num {
+    font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--rust);
+    letter-spacing: 0.04em; margin-bottom: 8px;
+  }
+  .pcard h3 { font-size: 17px; margin: 0 0 6px; color: var(--navy); }
+  .pcard .url {
+    font-family: var(--mono); font-size: 11px; color: var(--navy);
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 3px 7px; display: inline-block; margin-bottom: 14px; align-self: flex-start;
+  }
+  .pcard p { font-size: 13px; color: #374151; margin: 0 0 16px; }
+  .pcard .note { font-size: 12px; color: var(--muted); margin-top: auto; line-height: 1.5; }
+  .pcard .note strong { color: var(--navy); }
+  .pcard a.open {
+    align-self: flex-start;
+    text-decoration: none;
+    font-size: 13px; font-weight: 700;
+    color: #fff; background: var(--rust);
+    border: 1.5px solid var(--rust);
+    padding: 9px 18px; margin-bottom: 16px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .pcard a.open:hover { background: #9d3f00; border-color: #9d3f00; }
+
+  .ds { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ds .item { border: 1px solid var(--line); background: var(--white); padding: 18px; border-left: 3px solid var(--rust); }
+  .ds .item h4 { font-size: 14px; margin: 0 0 6px; color: var(--navy); }
+  .ds .item p { font-size: 12.5px; color: #374151; margin: 0; }
+  .ds .item .tag {
+    font-family: var(--mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--rust); border: 1px solid var(--line); padding: 2px 6px; display: inline-block; margin-bottom: 8px;
+  }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .legend .sw { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #374151; border: 1px solid var(--line); padding: 6px 10px; background: var(--white); }
+  .legend .chip { width: 26px; height: 16px; border: 1px solid #b9bdc6; }
+  .chip.ph { background: #efefef; }
+  .chip.shade { background: #f3f3f3; }
+  .chip.fill { background: #e7e7e7; }
+  .chip.ink { background: #1f1f1f; }
+
+  ul.notes { margin: 6px 0 0; padding-left: 18px; }
+  ul.notes li { font-size: 13px; color: #374151; margin-bottom: 6px; }
+
+  .pal { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .pal .swatch { border: 1px solid var(--line); font-family: var(--mono); font-size: 11px; }
+  .pal .swatch .blk { height: 34px; }
+  .pal .swatch .lab { padding: 5px 9px; color: var(--navy); background: #fff; }
+
+  .page-foot {
+    background: var(--navy); color: #c7cbd6; padding: 22px 48px; font-size: 12px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .page-foot strong { color: #fff; }
+  .page-foot .rust { color: var(--rust-soft); }
+
+  @media (max-width: 820px) {
+    .pages, .ds { grid-template-columns: 1fr; }
+    section.block { padding: 32px 24px; }
+    .brand-band { padding: 22px 24px; flex-direction: column; align-items: flex-start; }
+    .meta-strip { padding: 12px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="brand-band">
+    <img src="JL_Creative_logo.png" alt="JL Creative Ltd">
+    <div class="bt">
+      <p class="ey">JL Creative</p>
+      <h1>N-Accounting Service Page Wireframes</h1>
+      <p>Package of 8 service pages</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <p class="eyebrow">Overview</p>
+    <h2 class="h1">Service Page Wireframes</h2>
+    <p class="body">This is a set of eight low-fidelity (black &amp; white) wireframes for N-Accounting's core service pages. They're built to communicate layout, content hierarchy and section intent before any visual design or brand styling is applied. Each section carries a small annotation tag (top-right) restating its layout purpose, and image areas are shown as labelled placeholders.</p>
+    <p class="body">The pages are a deliberate matched set: they share the same grid, components, navigation and footer, so the eventual build is consistent and the templates are reusable. Summaries of each page and the shared design blocks are below.</p>
+  </section>
+
+  <section class="block shaded">
+    <p class="eyebrow">The eight pages</p>
+    <h2 class="h2">Wireframes</h2>
+    <div class="pages">
+
+      <div class="pcard">
+        <div class="num">01</div>
+        <h3>Accounting Services</h3>
+        <span class="url">/services/accounting-services/</span>
+        <a class="open" href="accounting-services.html">Open wireframe &rarr;</a>
+        <p>The core accounting page. Covers financial statements, P&amp;L, balance sheets, year-end support and outsourced accounting for SMEs, with sections for limited companies vs sole traders.</p>
+        <div class="note"><strong>Notable blocks:</strong> 2-col hero, services card grid, 3-col reporting insights, SME outsourcing split, business-structure cards.</div>
+      </div>
+
+      <div class="pcard">
+        <div class="num">02</div>
+        <h3>Tax Services</h3>
+        <span class="url">/services/tax-services/</span>
+        <a class="open" href="tax-services.html">Open wireframe &rarr;</a>
+        <p>Positions tax as both compliance and planning. Covers Self Assessment, Corporation Tax, business tax advice and HMRC compliance, with tax planning as the lead commercial section.</p>
+        <div class="note"><strong>Notable blocks:</strong> tax-planning feature panel (4 cards), HMRC icon row, Self Assessment "who needs to file" block.</div>
+      </div>
+
+      <div class="pcard">
+        <div class="num">03</div>
+        <h3>Annual Accounts</h3>
+        <span class="url">/services/annual-accounts/</span>
+        <a class="open" href="annual-accounts.html">Open wireframe &rarr;</a>
+        <p>Year-end and statutory accounts, Companies House filing and HMRC/Corporation Tax alignment. Business-credibility section built out as a competitor-research opportunity.</p>
+        <div class="note"><strong>Notable blocks:</strong> Companies House deadline calendar visual, credibility feature panel (5 cards), what's-included card grid.</div>
+      </div>
+
+      <div class="pcard">
+        <div class="num">04</div>
+        <h3>Bookkeeping</h3>
+        <span class="url">/services/bookkeeping/</span>
+        <a class="open" href="bookkeeping.html">Open wireframe &rarr;</a>
+        <p>Bank reconciliation, invoice/expense management, monthly bookkeeping and cloud bookkeeping. Outsourcing and small-business relevance are the conversion drivers.</p>
+        <div class="note"><strong>Notable blocks:</strong> cloud bookkeeping dashboard mock + Xero/QuickBooks chips, outsourcing split, services card grid.</div>
+      </div>
+
+      <div class="pcard">
+        <div class="num">05</div>
+        <h3>Payroll / PAYE</h3>
+        <span class="url">/services/payroll-services/</span>
+        <a class="open" href="payroll.html">Open wireframe &rarr;</a>
+        <p>Monthly payroll, PAYE, RTI submissions, payslips and HMRC compliance. Framed around accuracy and the human impact of getting staff paid correctly.</p>
+        <div class="note"><strong>Notable blocks:</strong> HMRC icon row, mock payslip (gross &rarr; PAYE &rarr; NI &rarr; net), managed-payroll split, payment-accuracy section.</div>
+      </div>
+
+      <div class="pcard">
+        <div class="num">06</div>
+        <h3>Cloud Accounting</h3>
+        <span class="url">/services/cloud-accounting/</span>
+        <a class="open" href="cloud-accounting.html">Open wireframe &rarr;</a>
+        <p>Xero/QuickBooks setup, migration, Making Tax Digital and real-time reporting. The most visual page, positioning N-Accounting as digital-finance support.</p>
+        <div class="note"><strong>Notable blocks:</strong> before/after migration visual, software chips, reporting dashboard mock, 6-card benefits grid (3&times;2).</div>
+      </div>
+
+      <div class="pcard">
+        <div class="num">07</div>
+        <h3>VAT Services</h3>
+        <span class="url">/services/vat-services/</span>
+        <a class="open" href="vat-services.html">Open wireframe &rarr;</a>
+        <p>VAT registration, quarterly returns, scheme advice and HMRC compliance. Scheme cards differentiate from competitors who only cover filing. Threshold deliberately not stated.</p>
+        <div class="note"><strong>Notable blocks:</strong> VAT return flow visual (Sales &rarr; Purchase &rarr; Return &rarr; HMRC), 3 scheme cards, registration side card.</div>
+      </div>
+
+      <div class="pcard">
+        <div class="num">08</div>
+        <h3>Management Accounts</h3>
+        <span class="url">/services/management-accounts/</span>
+        <a class="open" href="management-accounts.html">Open wireframe &rarr;</a>
+        <p>Monthly/quarterly reporting, cash flow, KPIs and advisory insight. The most advisory-led page, positioning N-Accounting beyond report production.</p>
+        <div class="note"><strong>Notable blocks:</strong> management dashboard mock (KPIs + bars + trend line), advisory feature panel, 6-card what's-included grid.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <p class="eyebrow">Consistent design blocks</p>
+    <h2 class="h2">Shared components across all pages</h2>
+    <p class="body">Every page is assembled from the same library of blocks. This keeps the set coherent and means the build can be templated. The reusable components are:</p>
+    <div class="ds">
+      <div class="item"><span class="tag">Header</span><h4>Navigation bar</h4><p>Logo placeholder + main nav (Home, About Us, Case Studies, Articles, Client Area, Free Stuff, Contact) + "Contact us" button. Matched to the live N-Accounting site.</p></div>
+      <div class="item"><span class="tag">Hero</span><h4>Two-column hero + trust strip</h4><p>H1, value-led intro, primary + secondary CTA on the left; image placeholder on the right. A four-point trust strip sits beneath.</p></div>
+      <div class="item"><span class="tag">Intro</span><h4>Full-width intro</h4><p>Short heading and 2&ndash;3 advisory paragraphs introducing the service in plain English.</p></div>
+      <div class="item"><span class="tag">Explainer</span><h4>Two-column + support card</h4><p>Explanatory copy paired with a bordered "helps with" checklist card. Used on every page to define the service.</p></div>
+      <div class="item"><span class="tag">Services</span><h4>Card grid</h4><p>Scannable 2-col (or 3-col) cards with icon placeholders describing each part of the service.</p></div>
+      <div class="item"><span class="tag">Feature</span><h4>Feature panel</h4><p>Bordered white inset used for the strongest commercial/advisory section on a page (tax planning, credibility, advisory insight).</p></div>
+      <div class="item"><span class="tag">Process</span><h4>Five-step process</h4><p>Numbered horizontal timeline on desktop, stacking on mobile. Identical pattern on every page.</p></div>
+      <div class="item"><span class="tag">Why choose</span><h4>Intro + benefit cards</h4><p>Trust-led intro with team image placeholder, plus a row of five short benefit cards.</p></div>
+      <div class="item"><span class="tag">Audience</span><h4>Checklist grid</h4><p>Two-column "who this is for" list so visitors can self-identify.</p></div>
+      <div class="item"><span class="tag">Conversion</span><h4>Full-width CTA band</h4><p>Contrasting band with heading, reassurance line, primary button and a supporting contact line.</p></div>
+      <div class="item"><span class="tag">Related</span><h4>Related services cards</h4><p>Four internal-link cards for cross-linking between service pages.</p></div>
+      <div class="item"><span class="tag">FAQ</span><h4>Accordion</h4><p>Five Q&amp;A items (first open, rest collapsed) indicating accordion behaviour. FAQ schema to be added at build.</p></div>
+      <div class="item"><span class="tag">Footer</span><h4>CTA strip + footer</h4><p>A short repeat-CTA strip, then the dark footer with services, about and contact columns.</p></div>
+
+    </div>
+  </section>
+
+  <section class="block shaded">
+    <p class="eyebrow">Wireframe conventions</p>
+    <h2 class="h2">How to read these wireframes</h2>
+    <p class="body">Greyscale is intentional &mdash; the wireframes communicate structure and content, not brand styling. The visual language is consistent throughout:</p>
+    <div class="legend">
+      <div class="sw"><span class="chip ph"></span> Crossed box = image placeholder</div>
+      <div class="sw"><span class="chip shade"></span> Light shade = alternating section</div>
+      <div class="sw"><span class="chip fill"></span> Mid fill = icon / chart placeholder</div>
+      <div class="sw"><span class="chip ink"></span> Dark = primary button / footer</div>
+    </div>
+    <ul class="notes" style="margin-top:16px;">
+      <li>The page meta (URL, title, description) sits in the dark strip at the very top of each wireframe.</li>
+      <li>Mock visuals (dashboards, calendars, payslips, flows) are greyscale placeholders to show intent, not final designs.</li>
+      <li>Two open points for sign-off: the footer services order, and whether the five-card "why choose" rows should drop to a 3+2 layout (they run tight on desktop).</li>
+      <li>Next stage would be a single high-fidelity page in N-Accounting's brand palette to lock the look before rolling out across all eight.</li>
+    </ul>
+  </section>
+
+  <div class="page-foot">
+    <span><strong>JL Creative Ltd</strong></span></span>
+    <span>N-Accounting service page wireframes &middot; 8 pages</span>
+  </div>
+
+</div>
+</body>
+</html>

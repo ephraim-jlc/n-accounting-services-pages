@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Tax Services in Northampton | N-Accounting</title>
+<style>
+  :root {
+    --ink: #1f1f1f;
+    --grey-1: #555;
+    --grey-2: #888;
+    --line: #cfcfcf;
+    --line-strong: #9a9a9a;
+    --fill-soft: #f3f3f3;
+    --fill-mid: #e7e7e7;
+    --placeholder: #efefef;
+    --page: #ffffff;
+    --mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #d9d9d9;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .canvas {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--page);
+    border-left: 1px solid var(--line-strong);
+    border-right: 1px solid var(--line-strong);
+  }
+
+  .meta-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .meta-bar span { color: #bdbdbd; }
+  .meta-bar strong { color: #fff; font-weight: 600; }
+
+  section.block {
+    position: relative;
+    padding: 40px 48px;
+    border-bottom: 1px dashed var(--line);
+  }
+  section.block.shaded { background: var(--fill-soft); }
+
+  .anno {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    border: 1px solid var(--line);
+    padding: 2px 7px;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  .h1 { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0 0 14px; }
+  .h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+  .h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; }
+  .h4 {font-size: 15px; font-weight: 500; margin: 0 0 6px;}
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    margin: 0 0 16px;
+  }
+  p.body { font-size: 13.5px; color: var(--grey-1); margin: 0 0 12px; max-width: 62ch; }
+  .small { font-size: 12px; color: var(--grey-2); }
+
+  .img-ph {
+    background: var(--placeholder);
+    border: 1px solid var(--line-strong);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .img-ph::before, .img-ph::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      linear-gradient(to top right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph::after {
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph .lbl {
+    position: relative;
+    z-index: 1;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    background: var(--placeholder);
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+  }
+
+  .btn {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 11px 18px;
+    border: 1.5px solid var(--ink);
+    margin: 4px 8px 4px 0;
+  }
+  .btn.primary { background: var(--ink); color: #fff; }
+  .btn.secondary { background: #fff; color: var(--ink); }
+
+  .trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    margin-top: 22px;
+  }
+  .trust div {
+    flex: 1 1 0;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--grey-1);
+    border-right: 1px solid var(--line);
+    min-width: 140px;
+  }
+  .trust div:last-child { border-right: none; }
+
+  .grid { display: grid; gap: 18px; }
+  .two { grid-template-columns: 1fr 1fr; }
+  .three { grid-template-columns: repeat(3, 1fr); }
+  .hero-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+
+  .card {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 18px;
+  }
+  .card .ico {
+    width: 30px; height: 30px;
+    border: 1px solid var(--line-strong);
+    background: var(--fill-mid);
+    margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; color: var(--grey-2);
+  }
+  .card p { font-size: 12.5px; color: var(--grey-1); margin: 0; }
+
+  .support {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 20px;
+  }
+  .support .h3 { margin-bottom: 12px; }
+  ul.checks { list-style: none; margin: 0; padding: 0; }
+  ul.checks li {
+    font-size: 12.5px;
+    color: var(--grey-1);
+    padding: 7px 0 7px 26px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ul.checks li:last-child { border-bottom: none; }
+  ul.checks li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 16px; height: 16px;
+    border: 1px solid var(--line-strong);
+    text-align: center;
+    line-height: 15px;
+    font-size: 10px;
+    color: var(--grey-1);
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .step { border: 1px solid var(--line-strong); padding: 14px; background: #fff; }
+  .step .num {
+    width: 26px; height: 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .step h4 { font-size: 12.5px; margin: 0 0 6px; }
+  .step p { font-size: 11.5px; color: var(--grey-1); margin: 0; }
+
+  .aud { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
+  .aud div {
+    font-size: 12.5px; color: var(--grey-1);
+    padding: 8px 0 8px 24px; position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  .aud div::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 12px; height: 12px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+  }
+
+  .cta-band { background: var(--fill-mid); border: 1px solid var(--line-strong); text-align: center; padding: 36px; }
+  .cta-band .h2 { margin-bottom: 10px; }
+  .cta-band p.body { margin: 0 auto 18px; }
+  .contact-line { font-family: var(--mono); font-size: 12px; color: var(--grey-1); margin-top: 14px; }
+
+  .faq-item { border: 1px solid var(--line-strong); margin-bottom: -1px; }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; font-size: 13.5px; font-weight: 600; background: #fff;
+  }
+  .faq-q .pm { font-family: var(--mono); color: var(--grey-2); }
+  .faq-a { padding: 0 16px 14px; font-size: 12.5px; color: var(--grey-1); max-width: 70ch; }
+  .faq-item.closed .faq-a { display: none; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split .left { padding-right: 32px; }
+
+  /* icon row for HMRC compliance section */
+  .icon-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+  .icon-row .ir { border: 1px solid var(--line-strong); background: #fff; padding: 16px; text-align: center; }
+  .icon-row .ir .ico {
+    width: 34px; height: 34px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+    margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; color: var(--grey-2);
+  }
+  .icon-row .ir p { font-size: 12px; font-weight: 600; color: var(--grey-1); margin: 0; }
+
+  .wf-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px; border-bottom: 1px solid var(--line-strong);
+  }
+  .wf-logo { width: 130px; height: 30px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+    display:flex; align-items:center; justify-content:center; font-family: var(--mono); font-size: 10px; color: var(--grey-2); }
+  .wf-nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; font-size: 12px; color: var(--grey-1); }
+  .wf-nav .navcta { border: 1.5px solid var(--ink); padding: 8px 14px; font-size: 12px; font-weight: 600; }
+
+  .wf-foot { background: var(--ink); color: #cfcfcf; padding: 32px 48px; font-size: 12px; }
+  .wf-foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 24px; }
+  .wf-foot h5 { color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px; }
+  .wf-foot ul { list-style: none; margin: 0; padding: 0; line-height: 1.9; }
+
+  @media (max-width: 820px) {
+    .hero-grid, .two, .three, .split { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .aud { grid-template-columns: 1fr; }
+    .icon-row { grid-template-columns: 1fr 1fr; }
+    .wf-nav ul { display: none; }
+    .wf-foot .cols { grid-template-columns: 1fr 1fr; }
+    section.block { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- META / PAGE INFO -->
+  <div class="meta-bar">
+    <strong>WIREFRAME</strong> &nbsp;·&nbsp; N-Accounting service page<br>
+    <span>URL:</span> /services/tax-services/ &nbsp; <span>|</span> &nbsp;
+    <span>Title:</span> Tax Services Northampton | Tax Accountant | N-Accounting<br>
+    <span>Meta:</span> Expert tax services in Northampton covering tax planning, returns and HMRC compliance. Reduce tax liabilities and stay compliant with N-Accounting.
+  </div>
+
+  <!-- NAV -->
+  <div class="wf-nav">
+    <div class="wf-logo">LOGO</div>
+    <ul>
+      <li>Home</li><li>About Us ▾</li><li>Case Studies</li><li>Articles</li><li>Client Area ▾</li><li>Free Stuff</li><li>Contact</li>
+    </ul>
+    <div class="navcta">Contact us</div>
+  </div>
+
+  <!-- 1. HERO -->
+  <section class="block">
+    <span class="anno">Hero · 2-col + trust strip</span>
+    <div class="grid hero-grid">
+      <div>
+        <p class="eyebrow">H1</p>
+        <h1 class="h1">Tax Services</h1>
+        <p class="body">At N-Accounting, we provide expert tax services in Northampton for small businesses, sole traders, limited companies and individuals who want to stay compliant while managing tax more efficiently.</p>
+        <p class="body">We are committed to offering clear, accurate and stress-free Tax Services to small businesses, whatever their needs. Whether you need Self Assessment and Corporation Tax, tax planning, HMRC submissions, or ongoing business tax advice, N-Accounting is the right Accounting provider for you.</p>
+        <div>
+          <span class="btn primary">Book a Free Tax Consultation</span>
+          <span class="btn secondary">View Our Tax Services</span>
+        </div>
+      </div>
+      <div class="img-ph" style="min-height:240px;">
+        <span class="lbl">Image — owner reviewing tax documents / planning dashboard</span>
+      </div>
+    </div>
+    <div class="trust">
+      <div>Tax planning support</div>
+      <div>HMRC compliance</div>
+      <div>Fixed-fee pricing</div>
+      <div>Northampton tax accountants</div>
+    </div>
+  </section>
+
+  <!-- 2. INTRO -->
+  <section class="block">
+    <span class="anno">Intro · full-width text</span>
+    <h2 class="h2">Expert Tax Services for Businesses and Individuals in Northampton</h2>
+    <p class="body">Tax can quickly become complicated, especially when you are running a business, managing multiple income streams, or trying to plan ahead. The right tax accountant helps you stay on top of your obligations, avoid penalties and make informed decisions about how your money is managed.</p>
+    <p class="body">N-Accounting provides tax services in Northampton for business owners, sole traders, contractors, freelancers, limited companies and individuals. We help with tax returns, Corporation Tax, HMRC compliance, tax planning and practical advice throughout the year.</p>
+    <p class="body">Our approach is simple: we help you understand what needs to be done, when it needs to happen and how to manage your tax position as efficiently as possible.</p>
+  </section>
+
+  <!-- 3. EXPLAINER -->
+  <section class="block shaded">
+    <span class="anno">Explainer · 2-col + support card</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">What Are Tax Services and Why Do They Matter?</h2>
+        <p class="body">Tax services help businesses and individuals meet their legal obligations to HMRC while making sure their tax affairs are accurate, organised and properly planned.</p>
+        <p class="body">This can include preparing and submitting tax returns, calculating Corporation Tax, reviewing allowable expenses, advising on business structure, planning for future liabilities and supporting you if HMRC raises a query.</p>
+        <p class="body">Good tax support matters because mistakes, missed deadlines or poor planning can lead to unnecessary costs, penalties and stress. A professional tax accountant helps you manage these risks with clearer visibility over your position.</p>
+      </div>
+      <div class="support">
+        <p class="h3">Tax Services Can Help With</p>
+        <ul class="checks">
+          <li>Self Assessment tax returns</li>
+          <li>Corporation Tax calculations and submissions</li>
+          <li>HMRC compliance and deadlines</li>
+          <li>Tax planning and liability reduction</li>
+          <li>Allowable expenses and reliefs</li>
+          <li>Business tax advice</li>
+          <li>Making Tax Digital requirements</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TAX PLANNING (feature panel) -->
+  <section class="block shaded">
+    <span class="anno">Tax planning · feature panel + 4-card grid</span>
+    <div style="border:1.5px solid var(--line-strong); background:#fff; padding:28px;">
+      <h2 class="h2">Tax Planning Services to Help Reduce Your Tax Liability</h2>
+      <p class="body">Tax planning is about looking ahead, rather than only reacting when a deadline is approaching. With the right advice, you can manage your tax position more efficiently, improve cash flow and avoid paying more tax than you need to.</p>
+      <p class="body">Our tax planning services in Northampton help business owners and individuals understand the options available — reviewing allowable expenses, identifying reliefs, considering the tax impact of decisions and keeping your structure appropriate as circumstances change. All advice is focused on reducing tax legally and staying compliant.</p>
+      <div class="grid two" style="margin-top:18px;">
+        <div class="card"><div class="ico">ICON</div><p class="h3">Tax Efficiency Strategies</p><p>Manage tax more efficiently without creating unnecessary compliance risk.</p></div>
+        <div class="card"><div class="ico">ICON</div><p class="h3">Allowable Expenses &amp; Reliefs</p><p>Review relevant expenses and reliefs so your position is accurate and complete.</p></div>
+        <div class="card"><div class="ico">ICON</div><p class="h3">Business Structure Advice</p><p>Check whether your structure is still suitable as the business grows or changes.</p></div>
+        <div class="card"><div class="ico">ICON</div><p class="h3">Long-Term Tax Planning</p><p>Forward planning so tax is considered before major decisions are made.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. AUDIENCE -->
+  <section class="block">
+    <span class="anno">Audience · checklist grid</span>
+    <h2 class="h2">Who Our Tax Services Are Designed For</h2>
+    <p class="body" style="margin-bottom:18px;">Our tax services are suitable for:</p>
+    <div class="aud">
+      <div>Sole traders</div><div>Limited companies</div>
+      <div>Start-ups</div><div>Small and medium-sized businesses</div>
+      <div>Contractors</div><div>Freelancers</div>
+      <div>Company directors</div><div>Individuals completing Self Assessment</div>
+      <div>Businesses looking for tax planning support</div><div>Businesses needing HMRC compliance support</div>
+    </div>
+  </section>
+
+  <section class="block shaded">
+    <span class="anno">Services section heading</span>
+    <h2 class="h2" style="margin-bottom:22px">Our Services</h2>
+  </section>
+  <!-- 5. CORPORATION TAX -->
+  <section class="block shaded">
+    <span class="anno">Corporation Tax · 2-col + checklist</span>
+    <div class="grid hero-grid">
+      <div>
+        <h3 class="h3">Corporation Tax Services for Limited Companies</h2>
+        <p class="body">Limited companies in the UK must calculate, report and pay Corporation Tax on their profits. This involves accurate accounting records, timely submissions and a clear understanding of the company’s taxable position.</p>
+        <p class="body">N-Accounting supports limited companies with calculations, HMRC submissions, year-end tax planning and compliance with filing requirements. We help directors understand how profit, expenses, dividends, investment and business decisions affect the company’s overall tax position.</p>
+        <p class="body">Corporation Tax can have a major impact on cash flow, so it is important to plan ahead rather than leaving everything until the deadline.</p>
+      </div>
+      <div class="support">
+        <h4 class="h4">Corporation Tax Support Includes</p>
+        <ul class="checks">
+          <li>Corporation Tax calculations</li>
+          <li>HMRC submissions</li>
+          <li>Companies House alignment</li>
+          <li>Deadline and penalty management</li>
+          <li>Profit and expense review</li>
+          <li>Tax planning for limited companies</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. BUSINESS TAX ADVICE -->
+  <section class="block">
+    <span class="anno">Business tax advice · advisory-led + image</span>
+    <div class="grid hero-grid">
+      <div>
+        <h3 class="h3">Business Tax Advice and Strategic Support</h2>
+        <p class="body">Tax advice should not only happen at year end. Many business decisions have tax implications — from taking money out of a limited company to hiring staff, buying equipment, changing structure or investing for growth.</p>
+        <p class="body">N-Accounting provides business tax advice to help you understand these implications before decisions are made, giving you more control, better visibility and fewer surprises.</p>
+        <p class="body">We work with small businesses and SMEs as a long-term advisory partner, helping you treat tax as part of wider business planning rather than just a filing requirement.</p>
+      </div>
+      <div>
+        <div class="img-ph" style="min-height:150px; margin-bottom:14px;"><span class="lbl">Image — planning session / dashboard</span></div>
+        <div class="support">
+          <h4 class="h4">Advisory Support May Cover</p>
+          <ul class="checks">
+            <li>Business growth and tax planning</li>
+            <li>Director remuneration and profit extraction</li>
+            <li>Investment and expense planning</li>
+            <li>Tax implications of business structure</li>
+            <li>Cash flow and tax payment planning</li>
+            <li>Ongoing tax efficiency reviews</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SELF ASSESSMENT -->
+  <section class="block shaded">
+    <span class="anno">Self Assessment · 2-col + "who may need to file" block</span>
+    <div class="grid hero-grid">
+      <div>
+        <h3 class="h3">Self Assessment Tax Returns for Individuals and Sole Traders</h2>
+        <p class="body">Self Assessment can be confusing if you are unsure what needs to be declared, which expenses can be claimed, or when your return needs to be submitted.</p>
+        <p class="body">We help individuals, sole traders, contractors and freelancers prepare accurate Self Assessment returns and submit them to HMRC — reviewing income, expenses and records, helping you avoid common mistakes and making sure your return is filed correctly.</p>
+        <p class="body">Whether this is your first tax return or you need ongoing annual support, we make the process clearer and easier to manage.</p>
+      </div>
+      <div class="support">
+        <h4 class="h4">Who May Need a Self Assessment Return?</p>
+        <ul class="checks">
+          <li>Sole traders</li>
+          <li>Freelancers</li>
+          <li>Contractors</li>
+          <li>Company directors</li>
+          <li>Landlords</li>
+          <li>Individuals with additional income</li>
+          <li>People who received a notice to file from HMRC</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- 8. HMRC COMPLIANCE -->
+  <section class="block">
+    <span class="anno">HMRC compliance · text + icon row</span>
+    <h3 class="h3">HMRC Compliance and Support Services</h2>
+    <p class="body">Staying compliant with HMRC is essential for avoiding penalties, reducing risk and keeping your tax affairs in good order. Professional support helps make sure submissions are accurate, deadlines are met and records are properly maintained.</p>
+    <p class="body">We support you with HMRC submissions, tax return filing, Making Tax Digital requirements and general compliance queries. If HMRC contacts you about your tax affairs, we help you understand what is requested and how to respond.</p>
+    <div class="icon-row">
+      <div class="ir"><div class="ico">ICON</div><p>Submissions</p></div>
+      <div class="ir"><div class="ico">ICON</div><p>Investigations</p></div>
+      <div class="ir"><div class="ico">ICON</div><p>Deadlines</p></div>
+      <div class="ir"><div class="ico">ICON</div><p>Making Tax Digital</p></div>
+    </div>
+    <div class="support" style="margin-top:18px;">
+      <h4 class="h4">HMRC Support Includes</p>
+      <ul class="checks">
+        <li>Tax return preparation and submission</li>
+        <li>HMRC filing support</li>
+        <li>Penalty avoidance</li>
+        <li>Compliance checks</li>
+        <li>Making Tax Digital support</li>
+        <li>Tax investigation support</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 9. WHY CHOOSE -->
+  <section class="block shaded">
+    <span class="anno">Why choose · intro + 5 benefit cards</span>
+    <div class="grid hero-grid" style="margin-bottom:22px;">
+      <div>
+        <h2 class="h2">Why Choose N-Accounting for Tax Services in Northampton?</h2>
+        <p class="body">Choosing the right tax accountant can make a real difference to how confidently you manage your business and personal tax affairs. We combine compliance knowledge with practical, business-focused advice.</p>
+        <p class="body">We work with small businesses, SMEs, limited companies, sole traders and individuals who want clear support, transparent pricing and reliable tax guidance.</p>
+      </div>
+      <div class="img-ph" style="min-height:180px;"><span class="lbl">Image — team / office</span></div>
+    </div>
+    <div class="grid" style="grid-template-columns: repeat(4,1fr);">
+      <div class="card"><p class="h3">Small Business Experience</p><p>Practical, relevant, easy-to-understand tax advice.</p></div>
+      <div class="card"><p class="h3">HMRC Compliance Expertise</p><p>On top of deadlines, submissions and reporting.</p></div>
+      <div class="card"><p class="h3">Transparent Pricing</p><p>Fixed-fee clarity over costs before work begins.</p></div>
+      <div class="card"><p class="h3">Personalised Service</p><p>Built around your circumstances and goals.</p></div>
+    </div>
+  </section>
+
+  <!-- 10. PROCESS -->
+  <section class="block" hidden=true>
+    <span class="anno">Process · horizontal steps (vertical on mobile)</span>
+    <h2 class="h2">How Our Tax Service Process Works</h2>
+    <div class="steps" style="margin-top:18px;">
+      <div class="step"><div class="num">1</div><h4>Initial Consultation</h4><p>We understand your needs, structure, position and upcoming deadlines.</p></div>
+      <div class="step"><div class="num">2</div><h4>Review Your Position</h4><p>We review records, accounts, income, expenses and prior submissions.</p></div>
+      <div class="step"><div class="num">3</div><h4>Planning &amp; Strategy</h4><p>We identify ways to improve efficiency and manage liabilities.</p></div>
+      <div class="step"><div class="num">4</div><h4>Prepare &amp; Submit</h4><p>We prepare returns and submissions and file them accurately.</p></div>
+      <div class="step"><div class="num">5</div><h4>Ongoing Support</h4><p>Continuing advice, deadline reminders and support as you change.</p></div>
+    </div>
+  </section>
+
+
+
+  <!-- 12. CONVERSION -->
+  <section class="block">
+    <span class="anno">Conversion · full-width CTA band</span>
+    <div class="cta-band">
+      <h2 class="h2">Get Expert Tax Services in Northampton</h2>
+      <p class="body">If you need help with tax planning, tax returns, Corporation Tax or HMRC compliance, N-Accounting can help you manage your tax affairs with confidence. Book a free initial consultation to discuss your situation and find the right level of support.</p>
+      <span class="btn primary">Book a Free Tax Consultation</span>
+      <div class="contact-line">Ask us about fixed-fee pricing, tax review support and ongoing tax planning</div>
+    </div>
+  </section>
+
+  <!-- 13. RELATED SERVICES -->
+  <section class="block shaded">
+    <span class="anno">Related services · 4 link cards</span>
+    <h2 class="h2">Related Accounting and Business Services</h2>
+    <div class="grid" style="grid-template-columns: repeat(4,1fr); margin-top:16px;">
+      <div class="card"><p class="h3">Accounting Services</p><p>Professional accounting for small businesses, sole traders and limited companies.</p></div>
+      <div class="card"><p class="h3">Preparing Annual Accounts</p><p>Annual accounts, year-end reporting and financial statements.</p></div>
+      <div class="card"><p class="h3">Management Accounts</p><p>Regular reporting to understand performance and plan ahead.</p></div>
+      <div class="card"><p class="h3">Bookkeeping</p><p>Accurate bookkeeping to keep records organised and up to date.</p></div>
+    </div>
+  </section>
+
+  <!-- 14. FAQ -->
+  <section class="block">
+    <span class="anno">FAQ · accordion + FAQ schema</span>
+    <h2 class="h2">Frequently Asked Questions</h2>
+    <div style="margin-top:16px;">
+      <div class="faq-item">
+        <div class="faq-q">What does a tax accountant do? <span class="pm">–</span></div>
+        <div class="faq-a">A tax accountant helps individuals and businesses manage their tax responsibilities — preparing returns, calculating liabilities, advising on planning, submitting to HMRC and keeping clients compliant.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">How much does a tax accountant cost in the UK? <span class="pm">+</span></div>
+        <div class="faq-a">It depends on the complexity of your tax affairs and the support you need. A simple Self Assessment usually costs less than ongoing business tax planning or Corporation Tax support. We offer clear pricing so you know what to expect.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Can a tax accountant reduce my tax legally? <span class="pm">+</span></div>
+        <div class="faq-a">Yes — by identifying allowable expenses, reliefs and planning opportunities that may reduce your liability legally while keeping you compliant with HMRC.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Do I need a tax accountant for a small business? <span class="pm">+</span></div>
+        <div class="faq-a">Many small businesses benefit from one, as business tax becomes complicated as income, expenses, staff, assets and structure change. Support reduces errors, avoids missed deadlines and improves planning.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">What happens if I miss an HMRC deadline? <span class="pm">+</span></div>
+        <div class="faq-a">You may face penalties or interest depending on the tax type and how late the submission or payment is. If you are concerned about a missed deadline, get professional advice as soon as possible.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. FOOTER CTA STRIP -->
+  <section class="block shaded">
+    <span class="anno">Footer CTA strip</span>
+    <div style="text-align:center;">
+      <h2 class="h2">Need Help With Tax Planning or HMRC Compliance?</h2>
+      <p class="body" style="margin:0 auto 16px;">Speak to N-Accounting about professional tax services in Northampton for individuals, sole traders and limited companies.</p>
+      <span class="btn primary">Book a Free Tax Consultation</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="wf-foot">
+    <div class="cols">
+      <div>
+        <div class="wf-logo" style="margin-bottom:12px;">LOGO</div>
+        <p style="margin:0;">Social: FB · X · YouTube · LinkedIn · IG</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li>Accounting Services</li>
+          <li>Tax Services</li>
+          <li>Annual Accounts</li>
+          <li>Bookkeeping</li>
+          <li>Payroll</li>
+          <li>VAT</li>
+          <li>Cloud Accounting</li>
+          <li>Management Accounts</li>
+        </ul>
+      </div>
+      <div>
+        <h5>About Us</h5>
+        <ul>
+          <li>Articles</li>
+          <li>Contact Us</li>
+          <li>Meet the team</li>
+          <li>Our Vision</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>info@n-accounting.co.uk</li>
+          <li>01604 330129</li>
+          <li>Privacy Policy</li>
+          <li>Terms &amp; Conditions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>

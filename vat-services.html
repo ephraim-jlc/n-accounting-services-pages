@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — VAT Services in Northampton | N-Accounting</title>
+<style>
+  :root {
+    --ink: #1f1f1f;
+    --grey-1: #555;
+    --grey-2: #888;
+    --line: #cfcfcf;
+    --line-strong: #9a9a9a;
+    --fill-soft: #f3f3f3;
+    --fill-mid: #e7e7e7;
+    --placeholder: #efefef;
+    --page: #ffffff;
+    --mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #d9d9d9;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .canvas {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--page);
+    border-left: 1px solid var(--line-strong);
+    border-right: 1px solid var(--line-strong);
+  }
+
+  .meta-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .meta-bar span { color: #bdbdbd; }
+  .meta-bar strong { color: #fff; font-weight: 600; }
+
+  section.block {
+    position: relative;
+    padding: 40px 48px;
+    border-bottom: 1px dashed var(--line);
+  }
+  section.block.shaded { background: var(--fill-soft); }
+
+  .anno {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    border: 1px solid var(--line);
+    padding: 2px 7px;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  .h1 { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0 0 14px; }
+  .h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+  .h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    margin: 0 0 16px;
+  }
+  p.body { font-size: 13.5px; color: var(--grey-1); margin: 0 0 12px; max-width: 62ch; }
+  .small { font-size: 12px; color: var(--grey-2); }
+
+  .img-ph {
+    background: var(--placeholder);
+    border: 1px solid var(--line-strong);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .img-ph::before, .img-ph::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      linear-gradient(to top right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph::after {
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph .lbl {
+    position: relative;
+    z-index: 1;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    background: var(--placeholder);
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+  }
+
+  .btn {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 11px 18px;
+    border: 1.5px solid var(--ink);
+    margin: 4px 8px 4px 0;
+  }
+  .btn.primary { background: var(--ink); color: #fff; }
+  .btn.secondary { background: #fff; color: var(--ink); }
+
+  .trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    margin-top: 22px;
+  }
+  .trust div {
+    flex: 1 1 0;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--grey-1);
+    border-right: 1px solid var(--line);
+    min-width: 140px;
+  }
+  .trust div:last-child { border-right: none; }
+
+  .grid { display: grid; gap: 18px; }
+  .two { grid-template-columns: 1fr 1fr; }
+  .three { grid-template-columns: repeat(3, 1fr); }
+  .hero-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+
+  .card {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 18px;
+  }
+  .card .ico {
+    width: 30px; height: 30px;
+    border: 1px solid var(--line-strong);
+    background: var(--fill-mid);
+    margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; color: var(--grey-2);
+  }
+  .card p { font-size: 12.5px; color: var(--grey-1); margin: 0; }
+
+  .support {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 20px;
+  }
+  .support .h3 { margin-bottom: 12px; }
+  ul.checks { list-style: none; margin: 0; padding: 0; }
+  ul.checks li {
+    font-size: 12.5px;
+    color: var(--grey-1);
+    padding: 7px 0 7px 26px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ul.checks li:last-child { border-bottom: none; }
+  ul.checks li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 16px; height: 16px;
+    border: 1px solid var(--line-strong);
+    text-align: center;
+    line-height: 15px;
+    font-size: 10px;
+    color: var(--grey-1);
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .step { border: 1px solid var(--line-strong); padding: 14px; background: #fff; }
+  .step .num {
+    width: 26px; height: 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .step h4 { font-size: 12.5px; margin: 0 0 6px; }
+  .step p { font-size: 11.5px; color: var(--grey-1); margin: 0; }
+
+  .aud { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
+  .aud div {
+    font-size: 12.5px; color: var(--grey-1);
+    padding: 8px 0 8px 24px; position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  .aud div::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 12px; height: 12px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+  }
+
+  .cta-band { background: var(--fill-mid); border: 1px solid var(--line-strong); text-align: center; padding: 36px; }
+  .cta-band .h2 { margin-bottom: 10px; }
+  .cta-band p.body { margin: 0 auto 18px; }
+  .contact-line { font-family: var(--mono); font-size: 12px; color: var(--grey-1); margin-top: 14px; }
+
+  .faq-item { border: 1px solid var(--line-strong); margin-bottom: -1px; }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; font-size: 13.5px; font-weight: 600; background: #fff;
+  }
+  .faq-q .pm { font-family: var(--mono); color: var(--grey-2); }
+  .faq-a { padding: 0 16px 14px; font-size: 12.5px; color: var(--grey-1); max-width: 70ch; }
+  .faq-item.closed .faq-a { display: none; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split .left { padding-right: 32px; }
+
+  /* VAT return flow visual */
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: 10px; margin-top: 6px; }
+  .flow .node { border: 1px solid var(--line-strong); background: #fff; padding: 14px 10px; text-align: center; }
+  .flow .node .ico { width: 30px; height: 30px; border: 1px solid var(--line-strong); background: var(--fill-mid); margin: 0 auto 8px;
+    display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 9px; color: var(--grey-2); }
+  .flow .node .t { font-size: 11.5px; font-weight: 700; color: var(--ink); }
+  .flow .arrow { font-size: 18px; color: var(--grey-2); font-family: var(--mono); text-align: center; }
+
+  .wf-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px; border-bottom: 1px solid var(--line-strong);
+  }
+  .wf-logo { width: 130px; height: 30px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+    display:flex; align-items:center; justify-content:center; font-family: var(--mono); font-size: 10px; color: var(--grey-2); }
+  .wf-nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; font-size: 12px; color: var(--grey-1); }
+  .wf-nav .navcta { border: 1.5px solid var(--ink); padding: 8px 14px; font-size: 12px; font-weight: 600; }
+
+  .wf-foot { background: var(--ink); color: #cfcfcf; padding: 32px 48px; font-size: 12px; }
+  .wf-foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 24px; }
+  .wf-foot h5 { color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px; }
+  .wf-foot ul { list-style: none; margin: 0; padding: 0; line-height: 1.9; }
+
+  @media (max-width: 820px) {
+    .hero-grid, .two, .three, .split { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .aud { grid-template-columns: 1fr; }
+    .flow { grid-template-columns: 1fr; }
+    .flow .arrow { transform: rotate(90deg); margin: 0 auto; }
+    .wf-nav ul { display: none; }
+    .wf-foot .cols { grid-template-columns: 1fr 1fr; }
+    section.block { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- META / PAGE INFO -->
+  <div class="meta-bar">
+    <strong>WIREFRAME</strong> &nbsp;·&nbsp; N-Accounting service page<br>
+    <span>URL:</span> /services/vat-services/ &nbsp; <span>|</span> &nbsp;
+    <span>Title:</span> VAT Services Northampton | N-Accounting<br>
+    <span>Meta:</span> VAT services in Northampton including registration, return filing and HMRC compliance. Expert VAT support and scheme advice for small businesses.
+  </div>
+
+  <!-- NAV -->
+  <div class="wf-nav">
+    <div class="wf-logo">LOGO</div>
+    <ul>
+      <li>Home</li><li>About Us ▾</li><li>Case Studies</li><li>Articles</li><li>Client Area ▾</li><li>Free Stuff</li><li>Contact</li>
+    </ul>
+    <div class="navcta">Contact us</div>
+  </div>
+
+  <!-- 1. HERO -->
+  <section class="block">
+    <span class="anno">Hero · 2-col + trust strip</span>
+    <div class="grid hero-grid">
+      <div>
+        <p class="eyebrow">H1</p>
+        <h1 class="h1">VAT Services</h1>
+        <p class="body">At N-Accounting, we provide professional VAT services in Northampton for small businesses, SMEs, sole traders and limited companies that need clear, accurate and reliable VAT support.</p>
+        <p class="body">We can tell you when you need to register, how to prepare returns, what records to keep, which schemes suit you, and how to stay compliant with HMRC. Let us handle the headache and give you the confidence everything will be handled correctly.</p>
+        <div>
+          <span class="btn primary">Book a Free Consultation</span>
+          <span class="btn secondary">Ask About VAT Return Support</span>
+        </div>
+      </div>
+      <div class="img-ph" style="min-height:240px;">
+        <span class="lbl">Image — VAT returns / HMRC submissions / reviewing VAT with accountant</span>
+      </div>
+    </div>
+    <div class="trust">
+      <div>VAT registration support</div>
+      <div>Quarterly VAT returns</div>
+      <div>HMRC compliance</div>
+      <div>Northampton VAT accountants</div>
+    </div>
+  </section>
+
+  <!-- 2. INTRO -->
+  <section class="block">
+    <span class="anno">Intro · full-width text</span>
+    <h2 class="h2">Professional VAT Services for Northampton Businesses</h2>
+    <p class="body">VAT is one of the most important tax responsibilities for many UK businesses. Once VAT registered, you need to charge VAT correctly, keep accurate records, prepare VAT returns and submit information to HMRC by the required deadlines.</p>
+    <p class="body">N-Accounting provides VAT services in Northampton for businesses that want support with VAT registration, VAT return preparation, HMRC compliance and scheme advice — whether you're registering for the first time or looking for ongoing quarterly return support.</p>
+    <p class="body">Our aim is to help you stay compliant, avoid unnecessary errors and understand how VAT affects your cash flow and business operations.</p>
+  </section>
+
+  <!-- 3. EXPLAINER -->
+  <section class="block shaded">
+    <span class="anno">Explainer · 2-col + support card</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">What Is VAT and How Does It Work in the UK?</h2>
+        <p class="body">VAT (Value Added Tax) is a tax applied to many goods and services. VAT-registered businesses usually charge VAT on eligible sales and may be able to reclaim VAT on eligible business purchases.</p>
+        <p class="body">The difference between VAT charged on sales and VAT reclaimed on purchases is reported to HMRC through a VAT return. For many businesses this is a regular reporting responsibility requiring accurate records, clear processes and timely submissions.</p>
+        <p class="body">Good VAT support helps make sure sales and purchases are treated correctly, records are organised and returns are prepared using reliable information — especially important for businesses working towards Making Tax Digital.</p>
+      </div>
+      <div class="support">
+        <p class="h3">VAT Support Can Help With</p>
+        <ul class="checks">
+          <li>VAT registration</li>
+          <li>VAT return preparation</li>
+          <li>VAT return filing</li>
+          <li>Input VAT and output VAT review</li>
+          <li>Record keeping requirements</li>
+          <li>Making Tax Digital readiness</li>
+          <li>HMRC VAT compliance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. VAT REGISTRATION -->
+  <section class="block">
+    <span class="anno">VAT registration · 2-col + side card</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">VAT Registration Services</h2>
+        <p class="body">Knowing when to register for VAT can be confusing, especially if your business is growing, approaching the VAT threshold, or changing how it sells goods and services.</p>
+        <p class="body">N-Accounting can help you understand whether registration is required, whether voluntary registration may be worth considering and what information is needed for the HMRC registration process.</p>
+        <p class="body">We can also help you prepare for VAT operationally, handling invoicing, record keeping, software setup and advising on how VAT may affect pricing and cash flow.</p>
+      </div>
+      <div class="support">
+        <p class="h3">VAT Registration Support May Include</p>
+        <ul class="checks">
+          <li>Reviewing whether registration is required</li>
+          <li>Explaining VAT registration rules</li>
+          <li>Support with HMRC VAT registration</li>
+          <li>Advice on voluntary registration</li>
+          <li>VAT setup in accounting software</li>
+          <li>Guidance on VAT invoices and records</li>
+          <li>Planning for VAT cash flow impact</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. VAT RETURNS -->
+  <section class="block shaded">
+    <span class="anno">VAT returns · process flow visual + checklist</span>
+    <h2 class="h2">VAT Return Preparation and Filing</h2>
+    <p class="body">VAT returns need to be prepared accurately and submitted to HMRC by the relevant deadline. This requires clear records of VAT charged on sales, VAT paid on purchases and any adjustments required.</p>
+    <div class="flow">
+      <div class="node"><div class="ico">ICON</div><div class="t">Sales VAT</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="ico">ICON</div><div class="t">Purchase VAT</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="ico">ICON</div><div class="t">VAT Return</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="ico">ICON</div><div class="t">HMRC Submission</div></div>
+    </div>
+    <div class="grid two" style="margin-top:22px;">
+      <p class="body" style="margin:0;">N-Accounting provides VAT return services for UK businesses that want dependable support with calculation, review and filing. We check your records, reconcile VAT figures and prepare returns based on the information held in your accounting system. Accurate preparation helps reduce the risk of errors, missed deadlines and unexpected HMRC issues.</p>
+      <div class="support" style="border:1px solid var(--line-strong);">
+        <p class="h3">VAT Return Support Includes</p>
+        <ul class="checks">
+          <li>Quarterly VAT return preparation</li>
+          <li>Review of sales and purchase VAT</li>
+          <li>Input VAT and output VAT checks</li>
+          <li>VAT reconciliation</li>
+          <li>VAT return filing support</li>
+          <li>Submission deadline management</li>
+          <li>Record keeping guidance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. VAT SCHEMES -->
+  <section class="block">
+    <span class="anno">VAT schemes · 3 cards</span>
+    <h2 class="h2">VAT Schemes and Tax Efficiency Options</h2>
+    <p class="body" style="margin-bottom:22px;">Different VAT schemes affect how VAT is calculated, recorded and paid. The right approach can make VAT easier to manage and may improve cash flow depending on your business. Advice should always be based on your circumstances, taking into account aspects such as turnover, sector, customer type, expenses and cash flow.</p>
+    <div class="grid three">
+      <div class="card"><div class="ico">ICON</div><p class="h3">Standard VAT Scheme</p><p>The standard approach — VAT charged on sales and reclaimed on eligible purchases.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Flat Rate Scheme</p><p>A simplified scheme that may suit some small businesses, depending on turnover, sector and cost structure.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Cash Accounting Scheme</p><p>Can help some businesses manage VAT based on payments received and made, rather than invoice dates.</p></div>
+    </div>
+  </section>
+
+  <!-- 7. HMRC COMPLIANCE -->
+  <section class="block shaded">
+    <span class="anno">HMRC compliance · 2-col + side panel</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">HMRC Compliance and VAT Inspections</h2>
+        <p class="body">VAT compliance matters because HMRC expects VAT-registered businesses to keep accurate records, submit returns correctly and pay any VAT due on time.</p>
+        <p class="body">Mistakes in VAT records or returns can lead to penalties, interest, queries or inspections. This is why clear systems, organised records and professional support where needed are so important.</p>
+        <p class="body">N-Accounting can help with HMRC VAT compliance, VAT inspections, record keeping reviews and communication with HMRC if questions arise.</p>
+      </div>
+      <div class="support">
+        <p class="h3">Why VAT Compliance Matters</p>
+        <ul class="checks">
+          <li>Helps avoid missed VAT deadlines</li>
+          <li>Reduces the risk of filing errors</li>
+          <li>Supports accurate HMRC submissions</li>
+          <li>Keeps VAT records organised</li>
+          <li>Helps prepare for VAT inspections</li>
+          <li>Reduces stress for business owners</li>
+          <li>Improves confidence in VAT reporting</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SMALL BUSINESS -->
+  <section class="block">
+    <span class="anno">Small business · audience checklist grid</span>
+    <h2 class="h2">VAT Services for Small Businesses and Limited Companies</h2>
+    <p class="body" style="margin-bottom:18px;">VAT can create extra admin for small businesses, especially when records aren't up to date or software isn't configured correctly. The right support makes the process more manageable and reduces the risk of mistakes — whether you need help registering, preparing quarterly returns, reviewing your scheme or responding to HMRC.</p>
+    <div class="aud">
+      <div>SMEs</div><div>Limited companies</div>
+      <div>Start-ups</div><div>Growing businesses</div>
+      <div>Sole traders</div><div>VAT-registered traders</div>
+      <div>Businesses approaching the VAT threshold</div><div>Businesses moving to digital VAT records</div>
+      <div>Businesses needing quarterly VAT return support</div><div>Businesses looking for VAT scheme advice</div>
+    </div>
+  </section>
+
+  <!-- 9. PROCESS -->
+  <section class="block shaded" hidden=true>
+    <span class="anno">Process · horizontal steps (vertical on mobile)</span>
+    <h2 class="h2">How Our VAT Process Works</h2>
+    <div class="steps" style="margin-top:18px;">
+      <div class="step"><div class="num">1</div><h4>Registration Support</h4><p>If needed, we help you understand requirements and support HMRC registration.</p></div>
+      <div class="step"><div class="num">2</div><h4>Record Collection</h4><p>We review sales, purchases, invoices, receipts and accounting records.</p></div>
+      <div class="step"><div class="num">3</div><h4>Calculate &amp; Reconcile</h4><p>We calculate and reconcile VAT — input, output and adjustments.</p></div>
+      <div class="step"><div class="num">4</div><h4>Prepare &amp; Submit</h4><p>We prepare your return and support submission to HMRC by deadline.</p></div>
+      <div class="step"><div class="num">5</div><h4>Ongoing Support</h4><p>Support with VAT questions, records, scheme reviews and compliance.</p></div>
+    </div>
+  </section>
+
+  <!-- 10. WHY CHOOSE -->
+  <section class="block shaded">
+    <span class="anno">Why choose · intro + 5 benefit cards</span>
+    <div class="grid hero-grid" style="margin-bottom:22px;">
+      <div>
+        <h2 class="h2">Why Choose N-Accounting for VAT Services in Northampton?</h2>
+        <p class="body">VAT needs to be accurate, organised and submitted on time. We provide clear VAT support that helps businesses stay compliant and reduce the stress of VAT administration.</p>
+        <p class="body">We work with small businesses, SMEs and limited companies that need practical advice, reliable filing support and clear communication.</p>
+      </div>
+      <div class="img-ph" style="min-height:180px;"><span class="lbl">Image — team / office</span></div>
+    </div>
+    <div class="grid" style="grid-template-columns: repeat(5,1fr);">
+      <div class="card"><p class="h3">VAT Compliance Expertise</p><p>Understand VAT responsibilities and stay aligned with HMRC.</p></div>
+      <div class="card"><p class="h3">Accurate Return Filing</p><p>Careful record review and accurate return preparation and filing.</p></div>
+      <div class="card"><p class="h3">Scheme Optimisation Support</p><p>Help to check whether your current VAT scheme is suitable.</p></div>
+      <div class="card"><p class="h3">SME-Focused Service</p><p>Designed for small businesses, start-ups and owner-managed firms.</p></div>
+      <div class="card"><p class="h3">Transparent Pricing</p><p>Clear pricing so you understand costs before work begins.</p></div>
+    </div>
+  </section>
+
+  <!-- 11. CONVERSION -->
+  <section class="block">
+    <span class="anno">Conversion · full-width CTA band</span>
+    <div class="cta-band">
+      <h2 class="h2">Get Expert VAT Services in Northampton</h2>
+      <p class="body">If you need help with VAT registration, VAT return filing, VAT scheme advice or HMRC compliance, N-Accounting can help. Book a free consultation to discuss your VAT position, your current setup and the support your business needs.</p>
+      <span class="btn primary">Book a Free Consultation</span>
+      <div class="contact-line">Ask about VAT registration, quarterly return filing, MTD readiness and HMRC compliance</div>
+    </div>
+  </section>
+
+  <!-- 12. RELATED SERVICES -->
+  <section class="block shaded">
+    <span class="anno">Related services · 4 link cards</span>
+    <h2 class="h2">Related Accounting and Business Services</h2>
+    <div class="grid" style="grid-template-columns: repeat(4,1fr); margin-top:16px;">
+      <div class="card"><p class="h3">Bookkeeping</p><p>Monthly bookkeeping to keep records organised and ready for VAT reporting.</p></div>
+      <div class="card"><p class="h3">Cloud Accounting</p><p>Xero, QuickBooks and digital setup to support MTD and real-time records.</p></div>
+      <div class="card"><p class="h3">Tax Services</p><p>Tax planning, HMRC compliance and return preparation.</p></div>
+      <div class="card"><p class="h3">Accounting Services</p><p>Professional accounting for SMEs, sole traders and limited companies.</p></div>
+    </div>
+  </section>
+
+  <!-- 13. FAQ -->
+  <section class="block">
+    <span class="anno">FAQ · accordion + FAQ schema</span>
+    <h2 class="h2">Frequently Asked Questions</h2>
+    <div style="margin-top:16px;">
+      <div class="faq-item">
+        <div class="faq-q">What is VAT in the UK? <span class="pm">–</span></div>
+        <div class="faq-a">VAT stands for Value Added Tax — a tax applied to many goods and services. VAT-registered businesses usually charge VAT on eligible sales and may reclaim VAT on eligible business purchases.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">How do VAT returns work? <span class="pm">+</span></div>
+        <div class="faq-a">A VAT return reports VAT charged on sales and VAT paid on purchases over a set reporting period. It's submitted to HMRC and shows whether VAT is payable or reclaimable.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Do I need to register for VAT? <span class="pm">+</span></div>
+        <div class="faq-a">You may need to register if your taxable turnover reaches the current VAT registration threshold. Some businesses also register voluntarily. An accountant can help you understand whether registration is required or beneficial.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">What is the VAT threshold in the UK? <span class="pm">+</span></div>
+        <div class="faq-a">The VAT threshold is the level of taxable turnover at which a business must register for VAT. This figure can change, so it should always be checked against current HMRC guidance before making a decision.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">What is the Flat Rate Scheme? <span class="pm">+</span></div>
+        <div class="faq-a">A VAT scheme designed to simplify VAT calculations for some small businesses. Instead of reclaiming VAT on most purchases, businesses pay a fixed percentage of turnover based on their sector. Suitability depends on the business and should be reviewed carefully.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. FOOTER CTA STRIP -->
+  <section class="block shaded">
+    <span class="anno">Footer CTA strip</span>
+    <div style="text-align:center;">
+      <h2 class="h2">Need Help With VAT Registration or Returns?</h2>
+      <p class="body" style="margin:0 auto 16px;">Speak to N-Accounting about VAT services in Northampton for small businesses, SMEs and limited companies.</p>
+      <span class="btn primary">Book a Free Consultation</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="wf-foot">
+    <div class="cols">
+      <div>
+        <div class="wf-logo" style="margin-bottom:12px;">LOGO</div>
+        <p style="margin:0;">Social: FB · X · YouTube · LinkedIn · IG</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li>Accounting Services</li>
+          <li>Tax Services</li>
+          <li>Annual Accounts</li>
+          <li>Bookkeeping</li>
+          <li>Payroll</li>
+          <li>VAT</li>
+          <li>Cloud Accounting</li>
+          <li>Management Accounts</li>
+        </ul>
+      </div>
+      <div>
+        <h5>About Us</h5>
+        <ul>
+          <li>Articles</li>
+          <li>Contact Us</li>
+          <li>Meet the team</li>
+          <li>Our Vision</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>info@n-accounting.co.uk</li>
+          <li>01604 330129</li>
+          <li>Privacy Policy</li>
+          <li>Terms &amp; Conditions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
