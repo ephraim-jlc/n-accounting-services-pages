@@ -259,6 +259,22 @@
   .fee .lbl2 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-2); }
   ul.checks.excl li::before { content: "×"; }
 
+  /* Google reviews widget */
+  .rev { display: grid; grid-template-columns: 0.9fr auto 1fr 1fr 1fr auto; gap: 14px; align-items: center; margin-top: 16px; }
+  .rev .sum { text-align: center; }
+  .rev .sum .ex { font-size: 18px; font-weight: 700; letter-spacing: 0.04em; }
+  .rev .stars { font-size: 16px; letter-spacing: 2px; color: var(--grey-1); }
+  .rev .sum .stars { font-size: 24px; }
+  .rev .glogo { display: inline-block; margin-top: 8px; border: 1px solid var(--line-strong); background: var(--fill-mid); padding: 5px 14px; font-family: var(--mono); font-size: 10px; color: var(--grey-2); }
+  .rev .arr { width: 28px; height: 28px; border: 1px solid var(--line-strong); border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--grey-2); }
+  .rev .rc { border: 1px solid var(--line-strong); background: #fff; padding: 16px; min-height: 190px; }
+  .rev .rc .top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .rev .rc .av { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--fill-mid); flex: none; }
+  .rev .rc .nm { font-size: 12.5px; font-weight: 700; }
+  .rev .rc .g { margin-left: auto; width: 18px; height: 18px; border: 1px solid var(--line-strong); background: var(--fill-mid); font-family: var(--mono); font-size: 9px; color: var(--grey-2); display: flex; align-items: center; justify-content: center; }
+  .rev .rc .ln { height: 8px; background: var(--fill-mid); margin-top: 8px; }
+  .rev .rc .more { margin-top: 10px; }
+
   .wf-nav {
     display: flex; align-items: center; justify-content: space-between;
     padding: 16px 48px; border-bottom: 1px solid var(--line-strong);
@@ -277,6 +293,8 @@
     .hero-grid, .two, .three, .split { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr 1fr; }
     .aud { grid-template-columns: 1fr; }
+    .rev { grid-template-columns: 1fr; }
+    .rev .arr { display: none; }
     .struct { grid-template-columns: 1fr; }
     .struct .mid { justify-content: center; transform: rotate(90deg); }
     .wf-nav ul { display: none; }
@@ -476,8 +494,41 @@
     </div>
   </section>
 
-  <!-- 10. RELATED SERVICES -->
+  <!-- 10. REVIEWS -->
   <section class="block">
+    <span class="anno">Reviews · Google reviews carousel widget</span>
+    <div class="rev">
+      <div class="sum">
+        <div class="ex">EXCELLENT</div>
+        <div class="stars">★★★★★</div>
+        <div class="small" style="color:var(--ink);">Based on <strong>XX reviews</strong></div>
+        <span class="glogo">GOOGLE LOGO</span>
+      </div>
+      <div class="arr">&lsaquo;</div>
+      <div class="rc">
+        <div class="top"><div class="av"></div><div><div class="nm">Reviewer name</div><div class="small">Date</div></div><div class="g">G</div></div>
+        <div class="stars">★★★★★</div>
+        <div class="ln"></div><div class="ln"></div><div class="ln" style="width:70%;"></div>
+        <div class="small more">Read more</div>
+      </div>
+      <div class="rc">
+        <div class="top"><div class="av"></div><div><div class="nm">Reviewer name</div><div class="small">Date</div></div><div class="g">G</div></div>
+        <div class="stars">★★★★★</div>
+        <div class="ln"></div><div class="ln"></div><div class="ln" style="width:45%;"></div>
+        <div class="small more">Read more</div>
+      </div>
+      <div class="rc">
+        <div class="top"><div class="av"></div><div><div class="nm">Reviewer name</div><div class="small">Date</div></div><div class="g">G</div></div>
+        <div class="stars">★★★★★</div>
+        <div class="ln"></div><div class="ln"></div><div class="ln" style="width:60%;"></div>
+        <div class="small more">Read more</div>
+      </div>
+      <div class="arr">&rsaquo;</div>
+    </div>
+  </section>
+
+  <!-- 11. RELATED SERVICES -->
+  <section class="block shaded">
     <span class="anno">Related services · 4 link cards</span>
     <h2 class="h2">Related Accounting and Business Services</h2>
     <div class="grid" style="grid-template-columns: repeat(4,1fr); margin-top:16px;">
@@ -488,8 +539,8 @@
     </div>
   </section>
 
-  <!-- 11. FAQ -->
-  <section class="block shaded">
+  <!-- 12. FAQ -->
+  <section class="block">
     <span class="anno">FAQ · accordion + FAQ schema</span>
     <h2 class="h2">Frequently Asked Questions</h2>
     <div style="margin-top:16px;">
@@ -520,8 +571,8 @@
     </div>
   </section>
 
-  <!-- 12. FOOTER CTA STRIP -->
-  <section class="block">
+  <!-- 13. FOOTER CTA STRIP -->
+  <section class="block shaded">
     <span class="anno">Footer CTA strip</span>
     <div style="text-align:center;">
       <h2 class="h2">Thinking About a Holding Company Structure?</h2>
