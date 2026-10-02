@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Holding Company Structure &amp; Setup | N-Accounting</title>
+<style>
+  :root {
+    --ink: #1f1f1f;
+    --grey-1: #555;
+    --grey-2: #888;
+    --line: #cfcfcf;
+    --line-strong: #9a9a9a;
+    --fill-soft: #f3f3f3;
+    --fill-mid: #e7e7e7;
+    --placeholder: #efefef;
+    --page: #ffffff;
+    --mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #d9d9d9;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .canvas {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--page);
+    border-left: 1px solid var(--line-strong);
+    border-right: 1px solid var(--line-strong);
+  }
+
+  .meta-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .meta-bar span { color: #bdbdbd; }
+  .meta-bar strong { color: #fff; font-weight: 600; }
+
+  section.block {
+    position: relative;
+    padding: 40px 48px;
+    border-bottom: 1px dashed var(--line);
+  }
+  section.block.shaded { background: var(--fill-soft); }
+
+  .anno {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    border: 1px solid var(--line);
+    padding: 2px 7px;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  .h1 { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0 0 14px; }
+  .h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+  .h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    margin: 0 0 16px;
+  }
+  p.body { font-size: 13.5px; color: var(--grey-1); margin: 0 0 12px; max-width: 62ch; }
+  .small { font-size: 12px; color: var(--grey-2); }
+
+  .img-ph {
+    background: var(--placeholder);
+    border: 1px solid var(--line-strong);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .img-ph::before, .img-ph::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      linear-gradient(to top right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph::after {
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+  }
+  .img-ph .lbl {
+    position: relative;
+    z-index: 1;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+    background: var(--placeholder);
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+  }
+
+  .btn {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 11px 18px;
+    border: 1.5px solid var(--ink);
+    margin: 4px 8px 4px 0;
+  }
+  .btn.primary { background: var(--ink); color: #fff; }
+  .btn.secondary { background: #fff; color: var(--ink); }
+
+  .trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    margin-top: 22px;
+  }
+  .trust div {
+    flex: 1 1 0;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--grey-1);
+    border-right: 1px solid var(--line);
+    min-width: 140px;
+  }
+  .trust div:last-child { border-right: none; }
+
+  .grid { display: grid; gap: 18px; }
+  .two { grid-template-columns: 1fr 1fr; }
+  .three { grid-template-columns: repeat(3, 1fr); }
+  .hero-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+
+  .card {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 18px;
+  }
+  .card .ico {
+    width: 30px; height: 30px;
+    border: 1px solid var(--line-strong);
+    background: var(--fill-mid);
+    margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; color: var(--grey-2);
+  }
+  .card p { font-size: 12.5px; color: var(--grey-1); margin: 0; }
+
+  .support {
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    padding: 20px;
+  }
+  .support .h3 { margin-bottom: 12px; }
+  ul.checks { list-style: none; margin: 0; padding: 0; }
+  ul.checks li {
+    font-size: 12.5px;
+    color: var(--grey-1);
+    padding: 7px 0 7px 26px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ul.checks li:last-child { border-bottom: none; }
+  ul.checks li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 16px; height: 16px;
+    border: 1px solid var(--line-strong);
+    text-align: center;
+    line-height: 15px;
+    font-size: 10px;
+    color: var(--grey-1);
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .step { border: 1px solid var(--line-strong); padding: 14px; background: #fff; }
+  .step .num {
+    width: 26px; height: 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .step h4 { font-size: 12.5px; margin: 0 0 6px; }
+  .step p { font-size: 11.5px; color: var(--grey-1); margin: 0; }
+
+  .aud { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
+  .aud div {
+    font-size: 12.5px; color: var(--grey-1);
+    padding: 8px 0 8px 24px; position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  .aud div::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 12px; height: 12px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+  }
+
+  .cta-band { background: var(--fill-mid); border: 1px solid var(--line-strong); text-align: center; padding: 36px; }
+  .cta-band .h2 { margin-bottom: 10px; }
+  .cta-band p.body { margin: 0 auto 18px; }
+  .contact-line { font-family: var(--mono); font-size: 12px; color: var(--grey-1); margin-top: 14px; }
+
+  .faq-item { border: 1px solid var(--line-strong); margin-bottom: -1px; }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; font-size: 13.5px; font-weight: 600; background: #fff;
+  }
+  .faq-q .pm { font-family: var(--mono); color: var(--grey-2); }
+  .faq-a { padding: 0 16px 14px; font-size: 12.5px; color: var(--grey-1); max-width: 70ch; }
+  .faq-item.closed .faq-a { display: none; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split .left { padding-right: 32px; }
+
+  /* Group structure diagram (before / after) */
+  .struct { display: grid; grid-template-columns: 1fr auto 1.6fr; gap: 18px; align-items: stretch; margin-top: 8px; }
+  .struct .pane { border: 1px solid var(--line-strong); background: #fff; padding: 18px; }
+  .struct .pane .cap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-2); margin: 0 0 14px; }
+  .struct .mid { display: flex; align-items: center; font-family: var(--mono); font-size: 20px; color: var(--grey-2); }
+  .tree { display: flex; flex-direction: column; align-items: center; }
+  .tree .node { border: 1px solid var(--line-strong); background: var(--fill-soft); padding: 10px 14px; text-align: center; font-size: 11.5px; font-weight: 700; min-width: 130px; }
+  .tree .node.hold { border: 1.5px solid var(--ink); background: var(--fill-mid); }
+  .tree .node small { display: block; font-weight: 400; font-size: 10.5px; color: var(--grey-1); margin-top: 2px; }
+  .tree .stem { width: 1px; height: 18px; background: var(--line-strong); }
+  .tree .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; border-top: 1px solid var(--line-strong); padding-top: 18px; position: relative; }
+  .tree .row .node { min-width: 0; position: relative; }
+  .tree .row .node::before { content: ""; position: absolute; left: 50%; top: -19px; width: 1px; height: 18px; background: var(--line-strong); }
+  .tree .row .node.opt { border-style: dashed; background: #fff; }
+
+  /* Fixed-fee panel */
+  .fee { border: 1.5px solid var(--ink); background: #fff; padding: 22px; text-align: center; }
+  .fee .amt { font-size: 30px; font-weight: 700; line-height: 1.1; margin: 6px 0 4px; }
+  .fee .lbl2 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-2); }
+  ul.checks.excl li::before { content: "×"; }
+
+  .wf-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px; border-bottom: 1px solid var(--line-strong);
+  }
+  .wf-logo { width: 130px; height: 30px; border: 1px solid var(--line-strong); background: var(--fill-mid);
+    display:flex; align-items:center; justify-content:center; font-family: var(--mono); font-size: 10px; color: var(--grey-2); }
+  .wf-nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; font-size: 12px; color: var(--grey-1); }
+  .wf-nav .navcta { border: 1.5px solid var(--ink); padding: 8px 14px; font-size: 12px; font-weight: 600; }
+
+  .wf-foot { background: var(--ink); color: #cfcfcf; padding: 32px 48px; font-size: 12px; }
+  .wf-foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 24px; }
+  .wf-foot h5 { color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px; }
+  .wf-foot ul { list-style: none; margin: 0; padding: 0; line-height: 1.9; }
+
+  @media (max-width: 820px) {
+    .hero-grid, .two, .three, .split { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .aud { grid-template-columns: 1fr; }
+    .struct { grid-template-columns: 1fr; }
+    .struct .mid { justify-content: center; transform: rotate(90deg); }
+    .wf-nav ul { display: none; }
+    .wf-foot .cols { grid-template-columns: 1fr 1fr; }
+    section.block { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- META / PAGE INFO -->
+  <div class="meta-bar">
+    <strong>WIREFRAME</strong> &nbsp;·&nbsp; N-Accounting service page<br>
+    <span>URL:</span> /holding-company-structure-setup/ &nbsp; <span>|</span> &nbsp;
+    <span>Title:</span> Holding Company Structure &amp; Setup | N-Accounting<br>
+    <span>Meta:</span> Fixed-fee holding company setup from N-Accounting in Northampton. Group structure planning, incorporation and share-for-share exchange for profitable trading businesses.
+  </div>
+
+  <!-- NAV -->
+  <div class="wf-nav">
+    <div class="wf-logo">LOGO</div>
+    <ul>
+      <li>Home</li><li>About Us ▾</li><li>Case Studies</li><li>Articles</li><li>Client Area ▾</li><li>Free Stuff</li><li>Contact</li>
+    </ul>
+    <div class="navcta">Contact us</div>
+  </div>
+
+  <!-- 1. HERO -->
+  <section class="block">
+    <span class="anno">Hero · 2-col + trust strip</span>
+    <div class="grid hero-grid">
+      <div>
+        <p class="eyebrow">H1</p>
+        <h1 class="h1">Holding Company Structure and Setup</h1>
+        <p class="body">At N-Accounting, we provide a fully managed holding company setup for established, profitable businesses that want a more tax-efficient and flexible group structure, while protecting valuable assets and cash.</p>
+        <p class="body">We plan the structure, incorporate the companies and complete the share-for-share exchange for a pre-agreed fixed fee of £500 – £1,500, delivered with the care and compliance you'd expect from a chartered accountancy practice.</p>
+        <div>
+          <span class="btn primary">Book an Initial Call</span>
+          <span class="btn secondary">See What's Included</span>
+        </div>
+      </div>
+      <div class="img-ph" style="min-height:240px;">
+        <span class="lbl">Image — business owner reviewing group structure with accountant</span>
+      </div>
+    </div>
+    <div class="trust">
+      <div>Fixed fee £500 – £1,500</div>
+      <div>Bespoke group structure plan</div>
+      <div>Share-for-share exchange handled</div>
+      <div>Chartered accountancy practice</div>
+    </div>
+  </section>
+
+  <!-- 2. INTRO -->
+  <section class="block">
+    <span class="anno">Intro · full-width text</span>
+    <h2 class="h2">Professional Holding Company Setup for Growing Businesses</h2>
+    <p class="body">As a business becomes more profitable, the way it is structured starts to matter. Cash builds up in the trading company, new ventures appear, and owners begin to think about protecting what they have built and planning for the future.</p>
+    <p class="body">A holding company structure places a parent company above your trading business. Done properly, it can give you more flexibility over how profits are held and reinvested, and separate valuable assets from day-to-day trading risk.</p>
+    <p class="body">N-Accounting manages the whole process for you, from the initial plan and valuation through to incorporation and the share exchange paperwork, so the restructure is handled correctly from the start.</p>
+  </section>
+
+  <!-- 3. WHAT'S INCLUDED -->
+  <section class="block shaded">
+    <span class="anno">What's included · card grid (5) + fee panel</span>
+    <h2 class="h2">What Our Holding Company Setup Service Includes</h2>
+    <p class="body" style="margin-bottom:22px;">As part of the fixed-fee package, our experienced team manages the full process on your behalf.</p>
+    <div class="grid three">
+      <div class="card"><div class="ico">ICON</div><p class="h3">Bespoke Structure Plan</p><p>We prepare a bespoke plan for incorporation and your group structure.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Business Valuation</p><p>We provide an approximate valuation of your business.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">HMRC Clearance Advice</p><p>We advise on whether an HMRC advance clearance is required.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Company Incorporation</p><p>We incorporate your holding company and subsidiaries on your behalf.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Share-for-Share Exchange</p><p>We complete and file the share-for-share exchange documentation.</p></div>
+      <div class="fee">
+        <div class="lbl2">Pre-agreed fixed fee</div>
+        <div class="amt">£500 – £1,500</div>
+        <p class="small" style="margin:0;">Agreed with you before any work begins</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. NOT INCLUDED -->
+  <section class="block">
+    <span class="anno">What's not included · 2-col + side card</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">What's Not Included in the Fixed Fee</h2>
+        <p class="body">We want the cost to be clear from the outset, so these are the items that sit outside the fixed-fee package.</p>
+        <p class="body">If we advise that a formal clearance application to HMRC is worthwhile, we can prepare it for you at an additional cost. Third-party charges such as stamp duty and Companies House filing fees are payable separately.</p>
+        <p class="body">If the group structure you need turns out to be complex, we reserve the right to withdraw the fixed-fee offer and will provide a bespoke quote for the work instead.</p>
+      </div>
+      <div class="support">
+        <p class="h3">Outside the Fixed Fee</p>
+        <ul class="checks excl">
+          <li>A formal clearance application to HMRC (available at an additional cost)</li>
+          <li>Stamp duty</li>
+          <li>Companies House filing fees</li>
+          <li>Ongoing accounting services (quoted separately)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EXPLAINER -->
+  <section class="block shaded">
+    <span class="anno">Explainer · 2-col + support card</span>
+    <div class="grid hero-grid">
+      <div>
+        <h2 class="h2">What Is a Holding Company and How Does It Work?</h2>
+        <p class="body">A holding company is a limited company that owns the shares in one or more other companies, known as subsidiaries. You own the holding company, and the holding company owns your trading business.</p>
+        <p class="body">For an existing business, the structure is usually put in place through a share-for-share exchange: you swap your shares in the trading company for shares in the new holding company. The trading company carries on as normal, with the same customers, staff, contracts and bank account.</p>
+        <p class="body">Once the group is in place, profits can be moved up to the holding company and held, invested or used to fund other ventures. The right structure depends on your circumstances, so advice should always come before any restructure.</p>
+      </div>
+      <div class="support">
+        <p class="h3">A Holding Structure Can Help With</p>
+        <ul class="checks">
+          <li>Separating surplus cash from trading risk</li>
+          <li>Protecting valuable assets and property</li>
+          <li>Moving profits between group companies</li>
+          <li>Funding new ventures or investments</li>
+          <li>Running several businesses under one group</li>
+          <li>Planning for a future sale or exit</li>
+          <li>Succession and bringing in new shareholders</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. STRUCTURE VISUAL -->
+  <section class="block">
+    <span class="anno">Group structure · before / after diagram</span>
+    <h2 class="h2">How a Group Structure Changes Your Business</h2>
+    <p class="body" style="margin-bottom:18px;">Your trading company keeps operating exactly as before. What changes is who owns it, and where profits and assets can sit.</p>
+    <div class="struct">
+      <div class="pane">
+        <p class="cap">Before · single company</p>
+        <div class="tree">
+          <div class="node">You<small>Shareholder</small></div>
+          <div class="stem"></div>
+          <div class="node">Trading Company<small>Trade, cash and assets all in one place</small></div>
+        </div>
+      </div>
+      <div class="mid">&#8594;</div>
+      <div class="pane">
+        <p class="cap">After · holding company group</p>
+        <div class="tree">
+          <div class="node">You<small>Shareholder</small></div>
+          <div class="stem"></div>
+          <div class="node hold">Holding Company<small>Holds surplus cash, assets and investments</small></div>
+          <div class="stem"></div>
+          <div class="row">
+            <div class="node">Trading Company<small>Day-to-day trade</small></div>
+            <div class="node opt">Subsidiary 2<small>Optional · new venture</small></div>
+            <div class="node opt">Subsidiary 3<small>Optional · assets / IP</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="small" style="margin-top:14px;">Diagram is illustrative. The structure we recommend is set out in your bespoke plan.</p>
+  </section>
+
+  <!-- 7. PROCESS -->
+  <section class="block shaded">
+    <span class="anno">Process · horizontal steps (vertical on mobile)</span>
+    <h2 class="h2">How Our Holding Company Setup Process Works</h2>
+    <div class="steps" style="margin-top:18px;">
+      <div class="step"><div class="num">1</div><h4>Initial Call</h4><p>We discuss your business, your goals and whether you meet the eligibility criteria.</p></div>
+      <div class="step"><div class="num">2</div><h4>Plan &amp; Valuation</h4><p>We prepare your bespoke structure plan, an approximate valuation and agree your fixed fee.</p></div>
+      <div class="step"><div class="num">3</div><h4>Clearance Advice</h4><p>We advise whether an HMRC advance clearance is required before proceeding.</p></div>
+      <div class="step"><div class="num">4</div><h4>Incorporation</h4><p>We incorporate your holding company and any subsidiaries on your behalf.</p></div>
+      <div class="step"><div class="num">5</div><h4>Share Exchange</h4><p>We complete and file the share-for-share exchange documentation.</p></div>
+    </div>
+  </section>
+
+  <!-- 8. WHY CLIENTS CHOOSE US -->
+  <section class="block">
+    <span class="anno">Why clients choose us · stock section (as live service pages)</span>
+    <h2 class="h2">Why Clients Choose Us</h2>
+    <p class="body" style="margin-bottom:22px;">Responsive accountancy support from a UK-based team that knows your business.</p>
+    <div class="grid" style="grid-template-columns: repeat(5,1fr);">
+      <div class="card"><div class="ico">ICON</div><p class="h3">Real People. Real Advice.</p><p>When you contact us, you'll always deal with a real member of our team. We don't hide behind AI assistants, automated help desks, or generic responses.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">UK-Based Team</p><p>Our experienced accounting team works together from our UK office between 9am and 5pm, ensuring consistent support and quick responses.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">A More Personal Service</p><p>We recognise our clients when they call. Your number is saved on our system so you can be greeted by name and connected directly to the right team member.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Tax Planning When it Matters</p><p>We hold pre-year-end meetings to help you identify tax-saving opportunities and understand how much to save for upcoming tax bills, while you still have time to do something about it.</p></div>
+      <div class="card"><div class="ico">ICON</div><p class="h3">Cloud Accounting Experts</p><p>As specialists in Xero and Float, we provide fast, practical support to help you get the most from your accounting and cashflow systems.</p></div>
+    </div>
+  </section>
+
+  <!-- 9. HOW TO APPLY -->
+  <section class="block shaded">
+    <span class="anno">How to apply · Calendly booking embed (as live page)</span>
+    <h2 class="h2">How to Apply</h2>
+    <p class="body" style="margin-bottom:18px;">If you're interested in finding out more, please book an initial call using the form below:</p>
+    <div class="img-ph" style="min-height:420px;">
+      <span class="lbl">Calendly booking form — existing embed carried over from live page</span>
+    </div>
+  </section>
+
+  <!-- 10. RELATED SERVICES -->
+  <section class="block">
+    <span class="anno">Related services · 4 link cards</span>
+    <h2 class="h2">Related Accounting and Business Services</h2>
+    <div class="grid" style="grid-template-columns: repeat(4,1fr); margin-top:16px;">
+      <div class="card"><p class="h3">Tax Services</p><p>Tax planning, Corporation Tax and HMRC compliance for your group.</p></div>
+      <div class="card"><p class="h3">Annual Accounts</p><p>Year-end and statutory accounts for each company in the group.</p></div>
+      <div class="card"><p class="h3">Management Accounts</p><p>Regular reporting and insight across your trading companies.</p></div>
+      <div class="card"><p class="h3">Accounting Services</p><p>Professional accounting for SMEs and limited companies.</p></div>
+    </div>
+  </section>
+
+  <!-- 11. FAQ -->
+  <section class="block shaded">
+    <span class="anno">FAQ · accordion + FAQ schema</span>
+    <h2 class="h2">Frequently Asked Questions</h2>
+    <div style="margin-top:16px;">
+      <div class="faq-item">
+        <div class="faq-q">What is a holding company? <span class="pm">–</span></div>
+        <div class="faq-a">A holding company is a limited company that owns the shares in one or more other companies, known as subsidiaries. It usually doesn't trade itself. Instead it holds shares, cash, property or other assets on behalf of the group.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">How much does it cost to set up a holding company? <span class="pm">+</span></div>
+        <div class="faq-a">Our holding company setup is offered for a pre-agreed fixed fee of £500 – £1,500. This doesn't include a formal HMRC clearance application, stamp duty or Companies House filing fees. More complex group structures are quoted separately.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">What is a share-for-share exchange? <span class="pm">+</span></div>
+        <div class="faq-a">It is the step that places the holding company above your existing business. You exchange your shares in the trading company for shares in the new holding company, so you own the holding company and it owns the trading company.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Do I need HMRC clearance to set up a holding company? <span class="pm">+</span></div>
+        <div class="faq-a">Not always. Advance clearance gives certainty over how HMRC will treat the transaction, and whether it is worthwhile depends on your circumstances. We advise on this as part of the service. A formal clearance application is available at an additional cost.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Will setting up a holding company affect my trading business? <span class="pm">+</span></div>
+        <div class="faq-a">Your trading company continues as the same legal entity, so day-to-day operations carry on as normal. What changes is the ownership above it. We'll explain any practical steps, such as updating company records, as part of your plan.</div>
+      </div>
+      <div class="faq-item closed">
+        <div class="faq-q">Is this service suitable for property rental businesses? <span class="pm">+</span></div>
+        <div class="faq-a">No. This service is designed for businesses whose main activity is the selling of goods or services. It is not suitable where the main activity is the rental of property.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FOOTER CTA STRIP -->
+  <section class="block">
+    <span class="anno">Footer CTA strip</span>
+    <div style="text-align:center;">
+      <h2 class="h2">Thinking About a Holding Company Structure?</h2>
+      <p class="body" style="margin:0 auto 16px;">Speak to N-Accounting about a fixed-fee holding company setup for your business.</p>
+      <span class="btn primary">Book an Initial Call</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="wf-foot">
+    <div class="cols">
+      <div>
+        <div class="wf-logo" style="margin-bottom:12px;">LOGO</div>
+        <p style="margin:0;">Social: FB · X · YouTube · LinkedIn · IG</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li>Accounting Services</li>
+          <li>Tax Services</li>
+          <li>Annual Accounts</li>
+          <li>Bookkeeping</li>
+          <li>Payroll</li>
+          <li>VAT</li>
+          <li>Cloud Accounting</li>
+          <li>Management Accounts</li>
+        </ul>
+      </div>
+      <div>
+        <h5>About Us</h5>
+        <ul>
+          <li>Articles</li>
+          <li>Contact Us</li>
+          <li>Meet the team</li>
+          <li>Our Vision</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>info@n-accounting.co.uk</li>
+          <li>01604 330129</li>
+          <li>Privacy Policy</li>
+          <li>Terms &amp; Conditions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
